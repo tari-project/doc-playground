@@ -1,6 +1,6 @@
-/target
-config.json
-data
+site/
+
+venv
 
 # Ignore OS files
 .DS_Store
