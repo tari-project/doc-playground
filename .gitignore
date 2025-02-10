@@ -1,0 +1,9 @@
+/target
+config.json
+data
+
+# Ignore OS files
+.DS_Store
+.idea/
+.vscode/*
+!.vscode/extensions.json
