@@ -1,5 +1,4 @@
 site_name: My Docs
-site_url: https://sitename.example
 nav:
 - Introduction: tari-introduction.md
 - Getting Started: tari-templates.md
