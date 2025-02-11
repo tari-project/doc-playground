@@ -2,6 +2,7 @@ site_name: Tari Docs
 nav:
 - Introduction: tari-introduction.md
 - Getting Started: tari-templates.md
+- Hackathon: hackathon.md
 
 theme:
   name: material
