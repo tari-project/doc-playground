@@ -6,6 +6,7 @@ mkdocs-material~=9.6.3
 mkdocs-material-extensions~=1.3
 pygments~=2.16
 pymdown-extensions~=10.2
+mkdocs-pymdownx-material-extras~=1.5.3
 
 # Requirements for pluginsa
 babel~=2.10
