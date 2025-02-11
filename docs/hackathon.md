@@ -12,11 +12,11 @@ We've focused on making sure that it's easy to get set up and started, so we've 
 
 In addition, we'll cover some basic implementations and actions you can perform with code examples so you can get started.
 
-# But firstly - what is the Ootle?
+## But firstly - what is the Ootle?
 
 If you're unfamiliar with the Ootle, we'd like to encourage you to read the [Tari Introduction](tari-introduction.md), which gives a quick, high-level overview of Tari, the Ootle and it's various components.
 
-# Set up the Ootle Wallet Daemon
+## Set up the Ootle Wallet Daemon
 
 While there are a couple of ways a developer can set up a working environment for Ootle development, we're going to be using the easiest setup, which is to use the Ootle Wallet Daemon for a local wallet and then connect to ContractNet via the wallet.
 
