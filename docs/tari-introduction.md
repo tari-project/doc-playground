@@ -2,16 +2,16 @@
 * Tari is an open-source protocol for the generation and management of digital assets. Very simply, the protocol defines how new digital assets, such as tokens, NFTs or other digital items can be generated, as well as the rules, mechanisms and penalties for transacting, validating and verifying these assets. Tari works on two levels: the Minotari blockchain and the Tari network (The Ootle).
 * Tari is a network of independent people running Tari on their machines in various capacities to process, secure and validate the creation and transaction of digital assets, and commit these transactions to the Minotari blockchain.
 * Tari uses the Minotari blockchain to record and validate transactions in an immutable way, so that anyone running or using Tari can check the state of Tari as a whole (How much of it is there? What is it? Who owns it). Think of this as a database that everyone runs their own copy of and agrees reflects the current state of all digital assets on the network.
-* Tari is also a cryptocurrency. Specifically, it's two. Minotari (XTM) is rewarded to users that are monitoring transactions, validating that those transactions are legitimate through proof of work (we'll discuss this in more detail at a later stage) and committing transactions to the Minotari blockchain. Minotari can then be "burned" to create Tari (TXM), which is the crytocurrency used on the Tari Network to create, transfer and validate digital assets.
+* Tari is also a cryptocurrency. Specifically, it's two. Minotari (XTM) is rewarded to users that are monitoring transactions, validating that those transactions are legitimate through proof of work (we'll discuss this in more detail at a later stage) and committing transactions to the Minotari blockchain. Minotari can then be "burned" to create Tari (TXM), which is the crytocurrency used on the Ootle to create, transfer and validate digital assets.
 
 All of this is aimed at creating a robust, secure platform through which creators, app developers and users can engage with unique digital assets that they know exist no where else. Whether you're selling tickets to a concert or participating in a video game with unique, one-of-a-kind collectables, Tari is capable of handling it.
 
 ## The unique characteristics of Tari
 Tari has some unique properties that distinguish it from other protocols like it:
 
-* **Configurable privacy**: By default, transactions on the Minotari blockchain are private through the use of MimbleWimble. On the Tari network, we've designed the protocol to be used in a variety of scenarios, so that those the require transparency (for practical or legal reasons) can provide it.
+* **Configurable privacy**: By default, transactions on the Minotari blockchain are private through the use of MimbleWimble. On the Ootle, we've designed the protocol to be used in a variety of scenarios, so that those the require transparency (for practical or legal reasons) can provide it.
 * **Scripting**: Tari implements a custom scripting language called TariScript, which brings Bitcoin-like scripting functionality to Mimblewimble. This enables features like one-sided payments, atomic swaps, and multi-sig capabilities while maintaining the privacy and scalability benefits of Mimblewimble.
-* **Smart contracts and templates**: Users are able to define contracts that will perform certain transactions only once specific programmable criteria are met. This allows users and developers use cases in both simple and complex environments, from ensuring trades to running decentralised autonomous organizations like stokvels.
+* **Smart contracts and templates**: Users are able to define contracts that will perform certain transactions only once specific programmable criteria are met. This allows users and developers use cases in both simple and complex environments, from ensuring trades to running decentralised autonomous organizations like [stokvels](https://en.wikipedia.org/wiki/Stokvel).
 * **Linear scalability**: Scalability - the ability of the of protocol to provide prompt, timely transactions as the network grows - is a core concern of any blockchain protocol. The Tari Network utilises an implementation of Cerebus to provide linear scalability in the Tari layer. As more devices, users and nodes are added to the network the throughput increases.
 * **A focus on ease of use**: Tari wants to provide not only the blockchain, but a platform on which users, developers and creators can easily interact. Many of Tari's projects - such as Tari Universe - aim to simplify and remove the complexity that has grown around blockchain technology. No one needs to know the technical intricacies of web technologies to benefit from the Internet. But currently, blockchains and cryptocurrencies require siginificant technical knowledge to operate. Tari wants to simplify blockchain so everyone can benefit..
 
@@ -51,5 +51,48 @@ This is where two vital components come in
 
 At this point, any actions that happen are handled by the Tari Virtual Machine. This is a sandboxed environment that will execute the transaction via one or more templates that developers have deployed on the network. Perhaps PlayItForward relies on a single template for its application, or relies on its own for unique aspects of its game and templates generated by others (such as Tari's own built-in templates).
 
+```mermaid
+flowchart TD
+    subgraph Consensus_Layer [Consensus Layer]
+        direction TB
+        C[Validator Node] 
+        C1[Epoch Management]
+        C2[Validator Committee Management]
+        HS[Cerberus-Hotstuff Consensus]
+        C -.-> |reads/writes| SS[(Local Substates)]
+        C -.-> |foreign state\nrequests| VNC[[Validator Committee]]
+    end
 
+    subgraph Logic_Layer [Logic Layer]
+        direction TB
+        TE[Tari Engine]
+        VM[Tari Virtual Machine]
+        TM[Template Manager]
+        ABI[Contract Interface ABI]
+        SDK[Tari SDK]
+        TE --> VM
+        VM -.-> |executes WASM code| ABI
+        VM -.-> |interacts with| TM
+    end
+    
+    subgraph Client [Client Side]
+        direction TB
+        Cl[Client]
+        Cl -.-> |creates transaction manifest| TM
+        Cl -.-> |receives results| C
+    end
+    
+    subgraph Indexer [Indexer]
+        direction TB
+        Ix1[Indexer]
+        Ix1 -.-> |reads| SS1[(Substates)]
+        Ix1 -.-> |requests| VN1[[Validator Node]]
+        Ix1 -.-> |performs dry-run| VM1[[Tari VM]]
+        TM -.-> Ix1
+    end
+
+    Cl -.-> |submits tx to| Ix1
+    Ix1 --> |submits transaction with\nlocked inputs| C
+    C --> |submits results to| Cl
+```
 
