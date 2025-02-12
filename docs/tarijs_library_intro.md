@@ -171,61 +171,6 @@ import * as wallet from "./wallet.ts";
 
 
 
-
-
-This code involves two main functions to interact with the Tari blockchain via a JavaScript/TypeScript API. It performs actions related to creating a faucet (a system that distributes free coins) and allowing users to take free coins from the faucet. The code uses the Tari SDK (`@tari-project/tarijs`) and interacts with smart contracts on the Tari blockchain. Here's a detailed breakdown of the code:
-
-### Imports:
-- **fromWorkspace**: This is a function from the Tari SDK that is used to extract or convert data in the context of a workspace (likely a user wallet or blockchain interaction).
-- **TariProvider**: A class that connects to the Tari blockchain network, allowing the code to interact with accounts, components, and transactions.
-- **TransactionBuilder**: A utility class to build transactions. It allows the creation of smart contract calls or method invocations within a transaction.
-- **wallet**: A custom local module (`./wallet.ts`) that's used for wallet-related functionality, such as submitting transactions and waiting for results.
-
-### Function 1: `createFaucet`
-
-The `createFaucet` function is responsible for creating a faucet smart contract that can mint new coins with a specified symbol and initial supply.
-
-- **Parameters**:
-  - `provider`: An instance of `TariProvider`, used to interact with the Tari blockchain.
-  - `faucetTemplate`: The address of a smart contract template that can mint coins (probably a template for a "faucet" contract).
-  - `initialSupply`: The amount of coins to be minted initially when the faucet is created.
-  - `symbol`: The symbol of the new minted coin.
-
-- **Process**:
-  1. `const account = await provider.getAccount();`: Retrieves the current account from the `TariProvider` (likely the user's wallet).
-  2. `const builder = new TransactionBuilder()...`: A new transaction builder is created, where the smart contract function `mint_with_symbol` will be called on the `faucetTemplate`. This function takes two parameters: the initial supply of coins and the coin symbol.
-  3. `const result = await wallet.submitTransactionAndWaitForResult(...)`: The transaction is then submitted through the `wallet` module, and the function waits for a result after the transaction is confirmed. The `requiredSubstates` specifies that the transaction must include the account address as a substate (used to track the state).
-  4. The result of the transaction is returned.
-
-### Function 2: `takeFreeCoins`
-
-The `takeFreeCoins` function allows users to take free coins from an existing faucet.
-
-- **Parameters**:
-  - `provider`: An instance of `TariProvider`.
-  - `faucetComponent`: The address of the faucet component (smart contract or system).
-
-- **Process**:
-  1. `const account = await provider.getAccount();`: Retrieves the current account from the `TariProvider` (again, likely the user's wallet).
-  2. `const builder = new TransactionBuilder()...`: A new transaction is built, which:
-     - Calls the `take_free_coins` method from the `faucetComponent` smart contract, effectively requesting free coins.
-     - Saves the result (the coins received) in a variable called `coins` using `.saveVar("coins")`.
-     - Then calls the `deposit` method on the current user's account to deposit the free coins into the account.
-  3. `const result = await wallet.submitTransactionAndWaitForResult(...)`: The transaction is submitted to the blockchain and waits for confirmation. The transaction includes the necessary `substates`, like the account and faucet component addresses, to ensure that the transaction is valid and that the account is correctly updated.
-  4. The result of the transaction is returned.
-
-### Overall Flow:
-- The `createFaucet` function allows the creation of a faucet contract that mints a specified amount of coins with a given symbol.
-- The `takeFreeCoins` function enables users to claim free coins from the faucet by invoking a smart contract method and depositing the coins into their own account.
-
-Both functions interact with the Tari blockchain by building transactions, submitting them, and awaiting confirmation through the `wallet.submitTransactionAndWaitForResult` method. The goal is to allow users to either create a faucet that mints coins or claim free coins from an existing faucet.
-
-Let me know if you'd like further clarification!
-
-
-
-
-
 # The Ootle - Core Concepts
 
 Your understanding of the interactions that are possible on the Ootle will be aided by reviewing the [Tari RFC-0330/Cerberus page](https://rfc.tari.com/RFC-0330_Cerberus), with the most important element concerning substates - what they are and the various types of substates. We'll summarise below but the RFC document is well worth the time.
