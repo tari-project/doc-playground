@@ -3,6 +3,7 @@ nav:
 - Introduction: tari-introduction.md
 - Getting Started: tari-templates.md
 - Hackathon: hackathon.md
+- Tari JS Library Intro: tarijs_library_intro.md
 
 theme:
   name: material
