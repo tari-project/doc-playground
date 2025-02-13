@@ -7,7 +7,7 @@ Through the library, developers will be able to build and submit transactions, c
 tari.js uses the ```TariProvider``` export interface for developers to access common functions for interacting with the Ootle via their chosen wallet.
 
 The core elements of the library are:
-* ```TariProvider```: An export interface that provides several functions, such as ```getSubstate()```, ```submitTransaction()``` and ```getTransactionResult()```, amongst others.
+* ```TariProvider```: An export interface that provides several functions, such as ```getSubstate()```, ```submitTransaction()``` and ```getTransactionResult()```, amongst others. 
 
 * ```TransactionBuilder```: A class for creating transactions for the Ootle that enact certain functions, such as creating new accounts, paying fees or claiming burn amounts.
 
@@ -151,7 +151,6 @@ Below is the package.json file specifically from the sample project:
 ```
 
 ## Using the Tari.js Library
-
 We're going to use an example from the sample application to introduce you to the `TariProvider`, Types and the `TransactionBuilder` (for ease of introduction, we'll avoid the Permissions for now and will cover that in a subsequent section)
 
 The file in particular we are interested in is [`faucet.ts`](https://github.com/mrnaveira/tariswap-ui/blob/main/src/faucet.ts). 
@@ -162,11 +161,95 @@ To start, let's look at our imports:
 
 ```typescript
 import {
+  fromWorkspace, // A type defining a temporary area in memory from the Tari Virtual Machine (TVM)
+  TariProvider, // Export interface for interacting with the Ootle via the wallet through JRPC calls.
+  TransactionBuilder, // A class that simplifies the process of transaction construction for submission to the Ootle via the wallet.
+} from "@tari-project/tarijs";
+import * as wallet from "./wallet.ts"; 
+```
+
+Having imported the dependencies, let's look at the first function, the createFaucet
+
+=== "Relevant faucet.ts code section"
+
+    ``` typescript
+    export async function createFaucet(
+    provider: TariProvider,
+    faucetTemplate: string,
+    initialSupply: number,
+    symbol: string
+)   {
+    ```
+
+=== "Full faucet.ts Code "
+
+    ``` typescript
+    import {
   fromWorkspace,
   TariProvider,
   TransactionBuilder,
 } from "@tari-project/tarijs";
 import * as wallet from "./wallet.ts";
+
+export async function createFaucet(
+  provider: TariProvider,
+  faucetTemplate: string,
+  initialSupply: number,
+  symbol: string
+) {
+  const account = await provider.getAccount();
+  const builder = new TransactionBuilder().callFunction(
+    {
+      templateAddress: faucetTemplate,
+      functionName: "mint_with_symbol",
+    },
+    [initialSupply, symbol]
+  );
+  const result = await wallet.submitTransactionAndWaitForResult({
+    provider,
+    account,
+    builder,
+    requiredSubstates: [{ substate_id: account.address }],
+  });
+  return result;
+}
+
+export async function takeFreeCoins(
+  provider: TariProvider,
+  faucetComponent: string
+) {
+  const account = await provider.getAccount();
+  const builder = new TransactionBuilder()
+    .callMethod(
+      {
+        componentAddress: faucetComponent,
+        methodName: "take_free_coins",
+      },
+      []
+    )
+    .saveVar("coins")
+    .callMethod(
+      {
+        componentAddress: account.address,
+        methodName: "deposit",
+      },
+      [fromWorkspace("coins")]
+    );
+  const result = await wallet.submitTransactionAndWaitForResult({
+    provider,
+    account,
+    builder,
+    requiredSubstates: [
+      { substate_id: account.address },
+      { substate_id: faucetComponent },
+    ],
+  });
+  return result;
+}
+    ```
+
+```typescript
+
 ```
 
 
