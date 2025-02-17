@@ -113,11 +113,11 @@ This will start the wallet, and you should see the following below:
 ```
 Navigating to the HTTP URL shown will allow you to access the Ootle wallet's web interface. At this point, you will not have an account (if you're wondering, but wait, what's an account - we'll be explaining some of these items in the following sections.), so you will need to create one. Enter the Account Name and select **"Create Account"** to create the associated account and proceed to the main wallet interface.
 
-![Alt text](/docs/images/tari_dan_wallet_account_creation.png)
+![Alt text](../docs/images/tari_dan_wallet_account_creation.png)
 
 This will be your primary wallet to use with either your unique app or the sample app provided. Once created, you'll see the following:
 
-![Alt text](/docs/images/wallet_interface.png)
+![Alt text](../docs/images/wallet_interface.png)
 
 The important actions here are:
 - `Claim Free Tokens`, which will give you the necessary tokens required to perform transactions, submit contracts and perform other activities on the Ootle.
