@@ -147,7 +147,7 @@ We've created a `Hello Ootle` app to demonstrate how to connect to your app to t
 
 #### Detailed Breakdown of Files
 
-1. **`Main.tsx`** (Main entry point)
+##### 1. **`Main.tsx`** (Main entry point)
 ```tsx
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
@@ -163,7 +163,7 @@ createRoot(document.getElementById('root')!).render(
 - **Function**: Initializes the app, rendering it into a DOM element with the id `root`.
 - **StrictMode**: Helps with identifying potential issues in the app during development.
 
-2. **`App.tsx`** (Main React Component)
+##### 2. **`App.tsx`** (Main React Component)
 ```tsx
 import "./App.css";
 import { TariConnectButton } from "./connect/TariConnectButton";
@@ -203,7 +203,7 @@ export default App;
 - **TariConnectButton**: A button component that initiates the wallet connection process. When clicked, it opens the `TariWalletSelectionDialog`.
 - **Provider and Account Info**: Displays the connection status of the Tari provider and the current user's account details (if available).
 
-3. **`account.ts`** (Account Store)
+##### 3. **`account.ts`** (Account Store)
 ```ts
 import { create } from "zustand";
 import useTariProvider from "./provider.ts";
@@ -244,7 +244,7 @@ export default useAccount;
 - **State**: The `ootleAccount` is stored in the app’s state, which is managed by Zustand. It contains details of the user's Tari account.
 - **Actions**: The `setOotleAccount` function fetches the account details from the Tari provider and updates the store's state.
 
-4. **`provider.ts`** (Tari Provider Store)
+##### 4. **`provider.ts`** (Tari Provider Store)
 ```ts
 import { create } from "zustand";
 import { TariProvider } from "@tari-project/tarijs";
@@ -266,7 +266,7 @@ export default useTariProvider;
 - **State**: Stores the current Tari provider instance (e.g., WalletConnect, Wallet Daemon).
 - **setProvider**: A function that updates the `provider` state when a wallet is selected and connected.
 
-5. **`settings.ts`** (Settings Store)
+##### 5. **`settings.ts`** (Settings Store)
 ```ts
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
@@ -298,7 +298,7 @@ export default useSettings;
 - **Settings**: Stores user preferences/settings (e.g., template).
 - **Persistence**: Uses the `zustand` middleware to persist settings in local storage across sessions.
 
-6. **`TariConnectButton.tsx`** (Connect Button Component)
+##### 6. **`TariConnectButton.tsx`** (Connect Button Component)
 ```tsx
 import * as React from "react";
 import Button from "@mui/material/Button";
@@ -344,7 +344,7 @@ export function TariConnectButton(props: Props) {
 ```
 - **TariConnectButton**: This button opens a dialog for the user to select a wallet connection method. Once the wallet is selected and connected, the provider state is updated.
 
-7. **`TariWalletSelectionDialog.tsx`** (Wallet Selection Dialog)
+##### 7. **`TariWalletSelectionDialog.tsx`** (Wallet Selection Dialog)
 The code provided is a **React component** (`TariWalletSelectionDialog`) that handles the display of a modal dialog for selecting a wallet connection method. The user can choose from different wallet providers like **WalletConnect**, **Tari Wallet Daemon**, or **Tari Universe** (depending on the feature flags in the environment configuration). Here’s a breakdown of the code and its components:
 
 1. **Imports**
@@ -435,17 +435,7 @@ This code provides a **wallet selection dialog** with three potential wallet con
 
 The dialog is structured with Material UI components for layout and styling, and the connections are established using the Tari project's API (`@tari-project/tarijs`). The app is highly configurable through environment variables, allowing different wallet options to be enabled or disabled.
 
-### Conclusion
-
-This app provides an interface for users to connect to their Tari wallet through multiple wallet methods (e.g., WalletConnect, Tari Wallet Daemon). The app maintains state using `zustand`, which keeps track of the connected Tari provider and the user's account. It allows users to manage wallet connection and display related information, such as connection status and account details.
-
-
-
-
 ## Digging into the sample project
-
-
-
 
 * Ideally, you'll need to set up Rust in your desired Integrated Development Environment (IDE). If you're unsure where to start, our [Setting Up Your Development Environment Guide](https://tari.com/lessons/08_setting_up_development_environment) is a good starting point
 
