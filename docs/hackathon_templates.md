@@ -1,4 +1,4 @@
-# Getting Started with Template & Ootle Development
+# Getting Started with Template
 
 Development on the Ootle, at its most basic, begins with the templates and smart contracts generated from them. These are the foundational blocks required to perform any Ootle specific functions.
 
