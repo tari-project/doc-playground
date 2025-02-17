@@ -2,9 +2,9 @@ site_name: Tari Docs
 nav:
 # - Introduction: tari-introduction.md
 # - Getting Started: tari-templates.md
-- Hackathon (Main): hackathon.md
-- Hackathon (Templates): hackathon_templates.md
-# - Tari JS Library Intro: tarijs_library_intro.md
+- Hackathon: hackathon.md
+- Templates: hackathon_templates.md
+- Tari JS Library: tarijs_library_intro.md
 
 theme:
   name: material

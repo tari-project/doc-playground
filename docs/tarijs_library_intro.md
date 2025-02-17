@@ -24,9 +24,9 @@ We'll discuss some of the common implementations of the above further in this do
 
 ## The tari.js sample project
 
-A sample project, [tariswap-ui](https://github.com/mrnaveira/tariswap-ui), has been created for the purpose of demonstrating tari.js implementation as well as some basic templates. The Tari Swap project is an application for creating various pools of tokens to be swapped, with pools being funded by users who receive "Liquidity Tokens" in return. This is discussed in detail in the current [Hackathon Guide](hackathon.md).
+A sample project, [tariswap-ui](https://github.com/mrnaveira/tariswap-ui), has been created for the purpose of demonstrating tari.js implementation as well as leveraging some basic templates. The Tari Swap project is an application for creating various pools of tokens to be swapped, with pools being funded by users who receive "Liquidity Tokens" in return. This is discussed in detail in the current [Hackathon Guide](hackathon.md).
 
-## Steps to Integrate **Tari.js** into Your Project
+### Steps to Integrate **Tari.js** into Your Project
 
 1. **Ensure Your Project Uses Node.js and npm/yarn**: Make sure you are working in a **Node.js** environment and you have either **npm** or **yarn** installed to manage your project dependencies. If not, [install Node.js](https://nodejs.org/) (which includes npm).
    

@@ -25,7 +25,7 @@ So ultimately, your app will consist of:
 
 We've focused on making sure that it's easy to get set up and started, so we've done some pre-setup on our side. However, you're still going to need to configure a couple of items before you can get going.
 
-### Create a React project
+### Create a React project with the necessary dependencies
 The quickest way to set up a new React project is to leverage `vite` to do so. Run the following command below, and select `Y` to continue
 
 ```bash
@@ -63,7 +63,15 @@ Lastly, choose the `Typescript` variant:
     React Router v7 ↗
 ```
 
-Next, you're going to want to edit your `package.json` file in the project to include the following items under the `dependencies sections
+Next, you're going to want to update your `package.json` file in the project to include the following items under the `dependencies` section.
+
+Run the following command to do so:
+
+```bash
+npm install @tari-project/tari-permissions @tari-project/tarijs @tari-project/typescript-bindings @tari-project/wallet_jrpc_client @tari-project/wallet-daemon-provider
+```
+
+Below is what you should be seeing in the package.json file following the above:
 
 ```json
     "@tari-project/tari-permissions": "^0.4.0",
@@ -74,7 +82,7 @@ Next, you're going to want to edit your `package.json` file in the project to in
 ```
 
 ### Set up the Ootle Wallet Daemon
-The binary you require is `tari_dan_wallet_daemon`. You'll be able to find the latest binaries [here](https://github.com/tari-project/tari-dan/releases).
+You'll need the `tari_dan_wallet_daemon` to proceed. You'll be able to find the latest binaries [here](https://github.com/tari-project/tari-dan/releases). If you don't, look to the end of this section for an alternative means of running the `tari_dan_wallet_daemon`
 
 Once you have it, open your terminal and run the following command:
 
@@ -95,14 +103,6 @@ If no data exists, it will create a config file and associated data folder using
 !!! tip "Tip"
     You can pass the `-b` command and specify a directory to create a new wallet database and configuration file within your desired location. This can be useful if you are having issues or want to have multiple wallets available. If you are experiencing issues connecting to ContractNet with your wallet, you can use this full command to point directly to the Indexer node on ContractNet: `tari_dan_wallet_daemon --release -- -b [yourfolderforstoringdata] --network igor --indexer-url=http://18.217.22.26:12006/json_rpc`
 
-If you have issues with the above, you can also run the wallet directly from the Ootle repo. In which case, clone the repo: 
-
-```
-git clone https://github.com/tari-project/tari-dan.git
-```
-
-And run the wallet via `cargo run --bin tari_dan_wallet_daemon --release -- -b data/w3 --network igor --indexer-url=http://18.217.22.26:12006/json_rpc` directly from the Ootle project.
-
 This will start the wallet, and you should see the following below:
 
 ```bash
@@ -113,11 +113,11 @@ This will start the wallet, and you should see the following below:
 ```
 Navigating to the HTTP URL shown will allow you to access the Ootle wallet's web interface. At this point, you will not have an account (if you're wondering, but wait, what's an account - we'll be explaining some of these items in the following sections.), so you will need to create one. Enter the Account Name and select **"Create Account"** to create the associated account and proceed to the main wallet interface.
 
-![Alt text](../docs/images/tari_dan_wallet_account_creation.png)
+![Alt text](/images/tari_dan_wallet_account_creation.png)
 
 This will be your primary wallet to use with either your unique app or the sample app provided. Once created, you'll see the following:
 
-![Alt text](../docs/images/wallet_interface.png)
+![Alt text](/images/wallet_interface.png)
 
 The important actions here are:
 - `Claim Free Tokens`, which will give you the necessary tokens required to perform transactions, submit contracts and perform other activities on the Ootle.
@@ -125,6 +125,16 @@ The important actions here are:
 - `Publish template`, which allows you to select a compiled WASM template for upload, estimate the fees required to submit and prevent you from uploading too large a template.
 
 For now, just `Claim Free Tokens` to get you started.
+
+#### Alternative `tari_dan_wallet_daemon` method
+
+If you have issues with the main method, you can also run the wallet directly from the Ootle repo. In which case, clone the repo: 
+
+```
+git clone https://github.com/tari-project/tari-dan.git
+```
+
+And run the wallet via `cargo run --bin tari_dan_wallet_daemon --release -- -b data/w3 --network igor --indexer-url=http://18.217.22.26:12006/json_rpc` directly from the Ootle project.
 
 ### Hello Ootle - Connecting your Wallet
 
