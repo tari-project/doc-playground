@@ -21,11 +21,11 @@ So ultimately, your app will consist of:
 * The actual web app itself, accessible directly through the browser or Universe via iFrame once the URL has been listed. The easist to get started is a React app.
 * A wallet that can interact with the Ootle.
 
-# Getting prepped
+## Getting prepped
 
 We've focused on making sure that it's easy to get set up and started, so we've done some pre-setup on our side. However, you're still going to need to configure a couple of items before you can get going.
 
-## Create a React project
+### Create a React project
 The quickest way to set up a new React project is to leverage `vite` to do so. Run the following command below, and select `Y` to continue
 
 ```bash
@@ -73,7 +73,7 @@ Next, you're going to want to edit your `package.json` file in the project to in
     "@tari-project/wallet-daemon-provider": "^0.4.0"
 ```
 
-## Set up the Ootle Wallet Daemon
+### Set up the Ootle Wallet Daemon
 The binary you require is `tari_dan_wallet_daemon`. You'll be able to find the latest binaries [here](https://github.com/tari-project/tari-dan/releases).
 
 Once you have it, open your terminal and run the following command:
@@ -117,20 +117,20 @@ Navigating to the HTTP URL shown will allow you to access the Ootle wallet's web
 
 This will be your primary wallet to use with either your unique app or the sample app provided. Once created, you'll see the following:
 
-![Alt text](/docs/assets/images/wallet_interface.png.png)
+![Alt text](/docs/assets/images/wallet_interface.png)
 
-The important actions here are: 
-* `Claim Free Tokens`, which will give you the necessary tokens required to perform transactions, submit contracts and perform other activities on the Ootle.
-* `Connect with WalletConnect`, which will allow you to connect your wallet with your app for testing purposes (more in a bit).
-* `Publish template`, which allows you to select a compiled WASM template for upload, estimate the fees required to submit and prevent you from uploading too large a template.
+The important actions here are:
+- `Claim Free Tokens`, which will give you the necessary tokens required to perform transactions, submit contracts and perform other activities on the Ootle.
+- `Connect with WalletConnect`, which will allow you to connect your wallet with your app for testing purposes (more in a bit).
+- `Publish template`, which allows you to select a compiled WASM template for upload, estimate the fees required to submit and prevent you from uploading too large a template.
 
 For now, just `Claim Free Tokens` to get you started.
 
-## Hello Ootle - Connecting your Wallet
+### Hello Ootle - Connecting your Wallet
 
 We've created a `Hello Ootle` app to demonstrate how to connect to your app to the wallet. This app is designed to connect to the Tari blockchain using different wallet methods. It integrates with the Tari ecosystem to manage the user's account and connect it to the app via various wallet options, including WalletConnect, Tari Wallet Daemon, and Tari Universe.
 
-### Key Features and Components
+#### Key Features and Components
 1. **Main Application Flow**:
    - **Main.tsx** is the entry point where the `App.tsx` is rendered inside a root element.
    - **App.tsx** is the core component of the app that interacts with the state and allows users to connect to a Tari wallet.
@@ -145,9 +145,9 @@ We've created a `Hello Ootle` app to demonstrate how to connect to your app to t
    - The app uses **TariConnectButton** to allow users to initiate a connection to a Tari wallet.
    - Upon clicking the connect button, the user is shown a **TariWalletSelectionDialog** where they can choose from different wallet connection methods.
 
-### Detailed Breakdown of Files
+#### Detailed Breakdown of Files
 
-#### 1. **`Main.tsx`** (Main entry point)
+1. **`Main.tsx`** (Main entry point)
 ```tsx
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
@@ -163,7 +163,7 @@ createRoot(document.getElementById('root')!).render(
 - **Function**: Initializes the app, rendering it into a DOM element with the id `root`.
 - **StrictMode**: Helps with identifying potential issues in the app during development.
 
-#### 2. **`App.tsx`** (Main React Component)
+2. **`App.tsx`** (Main React Component)
 ```tsx
 import "./App.css";
 import { TariConnectButton } from "./connect/TariConnectButton";
@@ -203,7 +203,7 @@ export default App;
 - **TariConnectButton**: A button component that initiates the wallet connection process. When clicked, it opens the `TariWalletSelectionDialog`.
 - **Provider and Account Info**: Displays the connection status of the Tari provider and the current user's account details (if available).
 
-#### 3. **`account.ts`** (Account Store)
+3. **`account.ts`** (Account Store)
 ```ts
 import { create } from "zustand";
 import useTariProvider from "./provider.ts";
@@ -244,7 +244,7 @@ export default useAccount;
 - **State**: The `ootleAccount` is stored in the app’s state, which is managed by Zustand. It contains details of the user's Tari account.
 - **Actions**: The `setOotleAccount` function fetches the account details from the Tari provider and updates the store's state.
 
-#### 4. **`provider.ts`** (Tari Provider Store)
+4. **`provider.ts`** (Tari Provider Store)
 ```ts
 import { create } from "zustand";
 import { TariProvider } from "@tari-project/tarijs";
@@ -266,7 +266,7 @@ export default useTariProvider;
 - **State**: Stores the current Tari provider instance (e.g., WalletConnect, Wallet Daemon).
 - **setProvider**: A function that updates the `provider` state when a wallet is selected and connected.
 
-#### 5. **`settings.ts`** (Settings Store)
+5. **`settings.ts`** (Settings Store)
 ```ts
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
@@ -298,7 +298,7 @@ export default useSettings;
 - **Settings**: Stores user preferences/settings (e.g., template).
 - **Persistence**: Uses the `zustand` middleware to persist settings in local storage across sessions.
 
-#### 6. **`TariConnectButton.tsx`** (Connect Button Component)
+6. **`TariConnectButton.tsx`** (Connect Button Component)
 ```tsx
 import * as React from "react";
 import Button from "@mui/material/Button";
@@ -344,7 +344,7 @@ export function TariConnectButton(props: Props) {
 ```
 - **TariConnectButton**: This button opens a dialog for the user to select a wallet connection method. Once the wallet is selected and connected, the provider state is updated.
 
-#### 7. **`TariWalletSelectionDialog.tsx`** (Wallet Selection Dialog)
+7. **`TariWalletSelectionDialog.tsx`** (Wallet Selection Dialog)
 The code provided is a **React component** (`TariWalletSelectionDialog`) that handles the display of a modal dialog for selecting a wallet connection method. The user can choose from different wallet providers like **WalletConnect**, **Tari Wallet Daemon**, or **Tari Universe** (depending on the feature flags in the environment configuration). Here’s a breakdown of the code and its components:
 
 1. **Imports**
