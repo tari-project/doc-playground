@@ -155,9 +155,9 @@ We're going to use an example from the sample application to introduce you to th
 
 The file in particular we are interested in is [`faucet.ts`](https://github.com/mrnaveira/tariswap-ui/blob/main/src/faucet.ts). 
 
-This file provides two main functions: a function to create a faucet with an initial supply of tokens (specified by the user), and a function that allows users to claim free coins from the newly created faucet. To do this, we're going to have to import several dependencies, call upon a template to create the faucet, submit transactions to enact our requirements. We'll use this example to explain what is happening as we go through the code.
+This file provides two main functions: a function to create a faucet with an initial supply of tokens (specified by the user), and a function that allows users to claim free coins from the newly created faucet. To do this, we're going to have to import several dependencies, call upon a template to create the faucet, and submit transactions to enact our requirements. We'll use this example to explain what is happening as we go through the code.
 
-To start, let's look at our imports:
+To start, let's look at our imports (take note of the comments):
 
 ```typescript
 import {
@@ -168,7 +168,7 @@ import {
 import * as wallet from "./wallet.ts"; 
 ```
 
-Having imported the dependencies, let's look at the first function, the createFaucet
+Having imported the dependencies, let's look at the first function, the `createFaucet` function
 
 === "Relevant faucet.ts code section"
 
@@ -247,6 +247,8 @@ Having imported the dependencies, let's look at the first function, the createFa
       return result;
     }
     ```
+
+Here, we've defined our `createFaucet` function and specified the parameters for the function. 
 
 
 # The Ootle - Core Concepts
