@@ -10,7 +10,7 @@ So, to develop within the Ootle (both apps or Tari templates), you're going to n
 
 * Ideally, you'll need to set up Rust in your desired Integrated Development Environment (IDE). If you're unsure where to start, our [Setting Up Your Development Environment Guide](https://tari.com/lessons/08_setting_up_development_environment) is a good starting point
 
-This Getting Started guide assumes some basic knowledge of Git, Cargo and Rust.
+This guide assumes some basic knowledge of Git, Cargo and Rust.
 
 ## Basic Concepts of the Ootle
 
@@ -20,8 +20,12 @@ This Getting Started guide assumes some basic knowledge of Git, Cargo and Rust.
 - **Bucket**: Handles resources within the component or workspace. Buckets are used to securely move data between vaults.
 - **Vault**: Securely stores resources and manages access control. An example of a vault is a collection of tokens, which needs to be updated as people withdraw or deposit more tokens into the vault.
 
-## Writing Your First Template
+## List of available tempaltes
 
+
+
+
+## Writing Your First Template
 We'll go through a simple template that will introduce you to the structure of a template and the core elements that are utilised. Below is the code for a template that will create a simple counter
 
 ```rust

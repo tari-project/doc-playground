@@ -124,9 +124,9 @@ The important actions here are:
 - `Connect with WalletConnect`, which will allow you to connect your wallet with your app for testing purposes (more in a bit).
 - `Publish template`, which allows you to select a compiled WASM template for upload, estimate the fees required to submit and prevent you from uploading too large a template.
 
-For now, just `Claim Free Tokens` to get you started.
+If you have created an account for the first time, you will have likely have received free tokens already. If not, or you are creating multiple accounts, just use the `Claim Free Tokens` to get the necessary tokens for testing.
 
-#### Alternative `tari_dan_wallet_daemon` method
+#### Alternative Wallet Daemon Setup method
 
 If you have issues with the main method, you can also run the wallet directly from the Ootle repo. In which case, clone the repo: 
 
@@ -136,10 +136,44 @@ git clone https://github.com/tari-project/tari-dan.git
 
 And run the wallet via `cargo run --bin tari_dan_wallet_daemon --release -- -b data/w3 --network igor --indexer-url=http://18.217.22.26:12006/json_rpc` directly from the Ootle project.
 
+### Setting up and using the Tari CLI
 
+The `tari cli` tool, located [here](https://github.com/tari-project/tari-cli/), is used to generate boilercode for template projects and generate a couple of pre-existing templates for review. Instructions can be found on the main page of repo, but in short:
 
+```bash
+./tari create project_name
+```
 
+The above command will create a new skeleton project for template creation. Templates are then placed in the `templates` folder.
 
+```bash
+../tari new [...yourtemplatename...]
+✅ Init configuration and directories
+✅ Refresh project templates repository
+✅ Refresh wasm templates repository
+✅ Collecting available WASM templates
+🔎 Select WASM template |
+  Fungible Tokens - A Fungible Token template to create your own fungible token.
+  NFT - A simple NFT template to create your own.
+  Tari Swap - Token swapping template
+  Counter - A basic counter example template that can be incremented.
+```
+
+You will have an option to select from the available templates to create a template. Note that you will be able to replace this template with your own.
+
+The `README.md` on the project's main page provides all the instructions. The main difference here is that you will **NOT** need to use the `tari-cli` to deploy the template, as publishing the template can be done via the Ootle Wallet's web interface.
+
+To generate the WASM file from the project, you can run the following command:
+
+```bash
+cargo build --target wasm32-unknown-unknown --release
+```
+
+This will generate a .wasm file in the `target/wasm32-unknown-unknown/release` directory.
+
+You can upload this file via the `Publish Template` button in your Wallet UI:
+
+![Alt text](images/publish_template_wallet.png)
 
 
 
