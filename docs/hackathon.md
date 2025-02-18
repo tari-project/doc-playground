@@ -35,8 +35,8 @@ We've focused on making sure that it's easy to get set up and started, so we've 
 You'll be using ContractNet, a test network for the Ootle. We've deployed ContractNet so participants can leverage off a common set of already deployed templates as well as potentially interact with other participants (network games, for example)
 
 The following URLs are important to note:
-* [Indexer Node: http://18.217.22.26:12006/json_rpc](http://18.217.22.26:12006/json_rpc): The jRPC address for the indexer node. You'll need to ensure your wallet is connecting to this for your transactions.
-* [Validator Node: http://18.217.22.26:12005](http://18.217.22.26:12005): The Validator Node for ContractNet. We've only deployed a single node at this point, but if you want to review blocks, deployed templates, etc, this is the place to do it.
+- [Indexer Node: http://18.217.22.26:12006/json_rpc](http://18.217.22.26:12006/json_rpc): The jRPC address for the indexer node. You'll need to ensure your wallet is connecting to this for your transactions.
+- [Validator Node: http://18.217.22.26:12005](http://18.217.22.26:12005): The Validator Node for ContractNet. We've only deployed a single node at this point, but if you want to review blocks, deployed templates, etc, this is the place to do it.
 
 A list of available templates can be found in the [Tari Templates](hackathon_templates.md)
 

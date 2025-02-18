@@ -24,7 +24,7 @@ We'll discuss some of the common implementations of the above further in this do
 
 ## The tari.js sample project
 
-A sample project, [tariswap-ui](https://github.com/mrnaveira/tariswap-ui), has been created for the purpose of demonstrating tari.js implementation as well as leveraging some basic templates. The Tari Swap project is an application for creating various pools of tokens to be swapped, with pools being funded by users who receive "Liquidity Tokens" in return. This is discussed in detail in the current [Hackathon Guide](hackathon.md).
+A sample project, [tariswap-ui](https://github.com/mrnaveira/tariswap-ui), has been created for the purpose of demonstrating tari.js implementation as well as leveraging some basic templates. The Tariswap project implements a decentralized exchange smart contract on the Tari network, using a constant-product automated market maker. It allows swapping tokens, adding liquidity and removing liquidit This is discussed in detail in the current [Hackathon Guide](hackathon.md).
 
 ### Steps to Integrate **Tari.js** into Your Project
 
@@ -151,9 +151,18 @@ Below is the package.json file specifically from the sample project:
 ```
 
 ## Using the Tari.js Library
+### Hello Ootle Example
+
 We're going to use an example from the sample application to introduce you to the `TariProvider`, Types and the `TransactionBuilder` (for ease of introduction, we'll avoid the Permissions for now and will cover that in a subsequent section).
 
-The file in particular we are interested in is [`faucet.ts`](https://github.com/mrnaveira/tariswap-ui/blob/main/src/faucet.ts). 
+The file in particular we are interested in is [`counter.ts`](https://github.com/tari-project/tariswap-ui/blob/main/src/faucet.ts). 
+
+
+
+
+We're going to use an example from the sample application to introduce you to the `TariProvider`, Types and the `TransactionBuilder` (for ease of introduction, we'll avoid the Permissions for now and will cover that in a subsequent section).
+
+The file in particular we are interested in is [`faucet.ts`](https://github.com/tari-project/tariswap-ui/blob/main/src/faucet.ts). 
 
 This file provides two main functions: a function to create a faucet with an initial supply of tokens (specified by the user), and a function that allows users to claim free coins from the newly created faucet. To do this, we're going to have to import several dependencies, call upon a template to create the faucet, and submit transactions to enact our requirements. We'll use this example to explain what is happening as we go through the code.
 

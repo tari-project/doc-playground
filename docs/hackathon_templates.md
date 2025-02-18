@@ -26,7 +26,7 @@ This guide assumes some basic knowledge of Git, Cargo and Rust.
 
 The following templates are already available on the network:
 
-* 
+* [Account](http://18.217.22.26:12005/templates/0000000000000000000000000000000000000000000000000000000000000000): Provides actions related to the account
 
 
 ## Writing Your First Template
