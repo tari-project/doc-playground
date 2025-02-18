@@ -21,6 +21,7 @@ This guide assumes some basic knowledge of Git, Cargo and Rust.
 - **Component**: A reusable and addressable entity with associated state and methods. This exists as a substate on the Ootle, that can be called when required via a unique address.
 - **Bucket**: Handles resources within the component or workspace. Buckets are used to securely move data between vaults.
 - **Vault**: Securely stores resources and manages access control. An example of a vault is a collection of tokens, which needs to be updated as people withdraw or deposit more tokens into the vault.
+- **Resoucr**
 
 ## List of available tempaltes
 
@@ -106,6 +107,12 @@ Lastly, we have several methods for interacting with the structure contained wit
 ```
 
 These are the means that we are going to intereact with the data type we've created in the Counter structure. We can create a new counter component on the network (so we can have multiple Counter components running at each of their component addresses), a method to call the current value of the counters, and a method to increase any counter's value by 1.
+
+## A more complicated example
+
+The `counter` template above is extremely simple - create a substate on the Ootle, store a value and increment it.
+
+
 
 ## Available Templates
 
