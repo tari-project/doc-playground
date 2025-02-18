@@ -6,9 +6,11 @@ But what are these? Think of a template as a specification for a smart contract.
 
 The community has focused on developing many templates for common activities envisioned for the Ootle with security and stability in mind. Rather than reinvent the wheel every time you would like to, for example, create an NFT series, you can leverage the templates that have been incorporated into the template library. However, for your own unique services or requirements, you may need to create your own.
 
-So, to develop within the Ootle (both apps or Tari templates), you're going to need the following:
+To develop within the Ootle (both apps or Tari templates), you're going to need the following:
 
-* Ideally, you'll need to set up Rust in your desired Integrated Development Environment (IDE). If you're unsure where to start, our [Setting Up Your Development Environment Guide](https://tari.com/lessons/08_setting_up_development_environment) is a good starting point
+* The Tari CLI for quick scaffolding of template projects
+* The `tari_template_lib` 
+
 
 This guide assumes some basic knowledge of Git, Cargo and Rust.
 
@@ -22,7 +24,9 @@ This guide assumes some basic knowledge of Git, Cargo and Rust.
 
 ## List of available tempaltes
 
+The following templates are already available on the network:
 
+* 
 
 
 ## Writing Your First Template
@@ -103,38 +107,8 @@ Lastly, we have several methods for interacting with the structure contained wit
 
 These are the means that we are going to intereact with the data type we've created in the Counter structure. We can create a new counter component on the network (so we can have multiple Counter components running at each of their component addresses), a method to call the current value of the counters, and a method to increase any counter's value by 1.
 
-### Setting up the Tari CLI tool.
+## Available Templates
 
-This alone will not do anything on the Ootle. For this to work, you need to compile the Rust program into WebAssembly - a WASM file.
+The following templates have already been deployed to the network by default:
 
-While you can certainly build up a Rust program from scratch and subsequently build it, the Ootle provides another tool for the creation of template projects, in the `tari-cli` tool. You can find the project here: https://github.com/tari-project/tari-cli
-
-The `README.md` on the project's main page provides all the instructions. The main difference here is that you will **NOT** need to use the `tari-cli` to deploy the template, as publishing the template can be done via the Ootle Wallet's web interface.
-
-To generate the WASM file from the project, you can run the following command:
-
-```bash
-cargo build --target wasm32-unknown-unknown --release
-```
-
-This will generate a .wasm file in the `target/wasm32-unknown-unknown/release` directory.
-
-### Creating a basic template from the available standard templates
-The ```new``` command allows you to create a standard template from one of several options that are pre-built into the tool. This allows you to view some basic functions that would be typical in the Ootle and what is required in each template to allow for this functionality.
-
-Via the command line, change the directory to the ```templates``` folder that was created in the previous step, then run the following command:
-
-```bash
-../tari new [...yourtemplatename...]
-✅ Init configuration and directories
-✅ Refresh project templates repository
-✅ Refresh wasm templates repository
-✅ Collecting available WASM templates
-🔎 Select WASM template |
-  Fungible Tokens - A Fungible Token template to create your own fungible token.
-  NFT - A simple NFT template to create your own.
-  Tari Swap - Token swapping template
-  Counter - A basic counter example template that can be incremented.
-```
-
-You will have an option to select from the available templates to create a template. Note that you will be able to replace this template with your own. The counter template referenced earlier came from the ```Counter``` option.
+* 
