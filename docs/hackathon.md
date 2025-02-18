@@ -4,6 +4,13 @@ Welcome to this internal Tari Hackathon! The purpose of today's session is to al
 
 The objective of the Hackathon is simple - develop an app that utilises the Ootle. Whether a game, some unique idea or a more "traditional" blockchain service, we hope you'll experiment and see what works (and what doesn't).
 
+The documents are divided into the following sections:
+
+* Hackthon Intro & Setup - the page you're reading right now. An explanation of what a Tari App consists of, and instructions for setting up all the necessary tools for working with the Ootle.
+* Tari.js library - An explanation of the Tari.js library for use in TypeScript projects. For our examples, we'll be using React and Vite.
+* Tari Templates - an explanation of Tari templates - what they are, how they work and some basic examples, with a link to more detailed 
+
+
 ## What is a Tari App?
 
 Much focus has been placed on Ootle apps within Universe, a easy to set up, one-click miner for Minotari. The current implementation will serve web apps via the Universe interface in iFrames.
@@ -83,6 +90,9 @@ Below is what you should be seeing in the package.json file following the above:
 
 ### Set up the Ootle Wallet Daemon
 You'll need the `tari_dan_wallet_daemon` to proceed. You'll be able to find the latest binaries [here](https://github.com/tari-project/tari-dan/releases). If you don't, look to the end of this section for an alternative means of running the `tari_dan_wallet_daemon`
+
+!!! warning "Release binaries not available"
+    Unfortunately, there are no release binaries currently available. It is recommended that you use the Alternative Method mentioned above. Once launched, however, instructions for creating the accounts and claiming fees are the same. 
 
 Once you have it, open your terminal and run the following command:
 
