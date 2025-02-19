@@ -17,7 +17,7 @@ The core elements of the library are:
 
 ## Additional documentation
 
-A big shoutout to [martinserts](https://github.com/martinserts) for putting together documentation regarding Tari.js, which can be found here.
+A big shoutout to [martinserts](https://github.com/martinserts) for putting together documentation regarding Tari.js, which can be found [here](https://tari-project.github.io/tari.js/docs).
 
 ## The tari.js sample project
 
