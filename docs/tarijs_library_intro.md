@@ -15,6 +15,14 @@ The core elements of the library are:
 
 * ```tari_permissions```: A collection of classes and types for managing permissions on resources, access to account balances and more.
 
+## Additional documentation
+
+A big shoutout to [martinserts](https://github.com/martinserts) for putting together documentation regarding the tari.js
+
+
+
+
+
 ## The tari.js sample project
 
 A sample project, [tariswap-ui](https://github.com/mrnaveira/tariswap-ui), has been created for the purpose of demonstrating tari.js implementation as well as leveraging some basic templates. The Tariswap project implements a decentralized exchange smart contract on the Tari network, using a constant-product automated market maker. It allows swapping tokens, adding liquidity and removing liquidit This is discussed in detail in the current [Hackathon Guide](hackathon.md).
@@ -64,7 +72,6 @@ A sample project, [tariswap-ui](https://github.com/mrnaveira/tariswap-ui), has b
    }
    ```
 ### Example of Updated `package.json`
-
 Your `package.json` should now look similar to this after the dependencies are installed:
 
 ```json

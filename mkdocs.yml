@@ -2,7 +2,6 @@ site_name: Tari Docs
 nav:
 # - Introduction: tari-introduction.md
 # - Getting Started: tari-templates.md
-- Custom Home: hackathon.md
 - Hackathon: hackathon.md
 - Templates: hackathon_templates.md
 - Tari JS Library: tarijs_library_intro.md
