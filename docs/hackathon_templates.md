@@ -14,8 +14,10 @@ To develop within the Ootle (both apps or Tari templates), you're going to need 
 
 This guide assumes some basic knowledge of Git, Cargo and Rust.
 
-## Basic Concepts of the Ootle
+## Rust Template Documentation 
+Documentation for the `tari_template_lib` can be found [here](https://docs.rs/tari_template_lib/latest/tari_template_lib/)
 
+## Basic Concepts of the Ootle
 - **Runtime Environment**: The runtime environment handles various elements such as buckets, proofs, substates, and components. It provides methods for manipulating these elements and managing their interactions. This includes the Tari Virtual Machine (TVM)
 - **Workspace**: Manages variables and proofs, providing methods to insert and retrieve indexed values. It's a localised instance of the variables required when performing a transaction against a smart contract that exists within the TVM.
 - **Component**: A reusable and addressable entity with associated state and methods. This exists as a substate on the Ootle, that can be called when required via a unique address.
@@ -100,7 +102,7 @@ Lastly, we have several methods for interacting with the structure contained wit
 
 These are the means that we are going to intereact with the data type we've created in the Counter structure. We can create a new counter component on the network (so we can have multiple Counter components running at each of their component addresses), a method to call the current value of the counters, and a method to increase any counter's value by 1.
 
-## Faucet Example - Incorporating Vaults and Buckets
+## Template Incorporating Vaults and Buckets
 The `counter` template above is extremely simple - create a component on the Ootle, store a value in it and increment it. However, most of the interactions you will be with more complex `models` and `structs`. 
 
 Consider the following example: you'd like to be able to mint your own meme coin, then distribute it freely to participants. You need to be able to burn these tokens if necessary, as well as track the total supply.
@@ -221,7 +223,7 @@ In addition, several templates have been written over the course of the Ootle's 
 * Two templates for creating stable coins can be found [here](https://github.com/tari-project/stable-coin/tree/main/templates/stable-coin)
 * Lastly, wihtin the Ootle itself, there are several test templates that can be reviewed [here](https://github.com/tari-project/tari-dan/dan_layer/engine/tests/templates)
 
-## How to deploy templates on the Ootle
+## How to deploy create template projects and deploy on the Ootle
 
 There are currently several methods that are available to deploy your contracts on the Ootle. We'll start with the recommended method and then touch on an alternative:
 

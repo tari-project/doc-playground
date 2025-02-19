@@ -17,60 +17,36 @@ The core elements of the library are:
 
 ## Additional documentation
 
-A big shoutout to [martinserts](https://github.com/martinserts) for putting together documentation regarding the tari.js
-
-
-
-
+A big shoutout to [martinserts](https://github.com/martinserts) for putting together documentation regarding Tari.js, which can be found here.
 
 ## The tari.js sample project
 
-A sample project, [tariswap-ui](https://github.com/mrnaveira/tariswap-ui), has been created for the purpose of demonstrating tari.js implementation as well as leveraging some basic templates. The Tariswap project implements a decentralized exchange smart contract on the Tari network, using a constant-product automated market maker. It allows swapping tokens, adding liquidity and removing liquidit This is discussed in detail in the current [Hackathon Guide](hackathon.md).
+A sample project, [tariswap-ui](https://github.com/mrnaveira/tariswap-ui), has been created for the purpose of demonstrating tari.js implementation as well as leveraging some basic templates. The Tariswap project implements a decentralized exchange smart contract on the Tari network, using a constant-product automated market maker.
 
-### Steps to Integrate **Tari.js** into Your Project
+### env. Example
 
-1. **Ensure Your Project Uses Node.js and npm/yarn**: Make sure you are working in a **Node.js** environment and you have either **npm** or **yarn** installed to manage your project dependencies. If not, [install Node.js](https://nodejs.org/) (which includes npm).
-   
-2. **Initialize Your Project** (If Not Already Done): If your project doesn't have a `package.json` file, create it by running:
-     ```bash
-     npm init -y
-     ```
 
-3. **Install Tari.js and Dependencies**: You'll need to install **Tari.js** and its associated dependencies (such as `typescript-bindings` and `wallet_jrpc_client`).
-   
-   Run the following npm command to install **Tari.js** and other required packages:
-   ```bash
-   npm install @tari-project/tarijs @tari-project/typescript-bindings @tari-project/wallet_jrpc_client
-   ```
 
-   This will add these packages to the `dependencies` section of your `package.json` file automatically.
+```rust
+# Template address of the fungible faucet (TestFaucet)
+VITE_FAUCET_TEMPLATE=15507b9da703b7f42683e218ff67f2f35debc0c2aa2258b5832a7710070574e1
 
-4. **(Optional) Install TypeScript**: If you're using TypeScript in your project, you should install **TypeScript** and the necessary types for your environment. 
-   ```bash
-   npm install --save-dev typescript @types/node
-   ```
-   - You can create a `tsconfig.json` file using `tsc --init`, if needed.
+# Template address of the pool (TariswapPool)
+VITE_POOL_TEMPLATE=94dddd6a2e2f5e9c4bf086c6e939570080c7392aa70ebabdbe3460e939283165
 
-5. **Install React (If Using React)**:
-   - If your project uses **React**, install **React** and **React-DOM** by running:
-   ```bash
-   npm install react react-dom
-   ```
-   
-5. **(Optional) Configure TypeScript**:
-   - If you're using **TypeScript**, make sure to add any types or configuration for **Tari.js** if needed. The Tari libraries should already include types, but ensure your `tsconfig.json` is properly set up:
-   ```json
-   {
-     "compilerOptions": {
-       "target": "es6",
-       "module": "es6",
-       "moduleResolution": "node",
-       "esModuleInterop": true,
-       "strict": true,
-       "skipLibCheck": true
-     }
-   }
-   ```
+# Template address of the pool index (TariswapIndex)
+VITE_POOL_INDEX_TEMPLATE=d5a4de8415b576995299a99f012b461cdb84757a6c92e88cb2017d7a38fff292
+
+# Component address of the pool index
+VITE_POOL_INDEX_COMPONENT=component_c25b2d005572d3cc488119afb3fd7da3dfbfe61da26a78af133235e6
+
+# Wallet connect project id
+VITE_WALLET_CONNECT_PROJECT_ID=78f3485d08b9640a087cbcea000e1f8b
+
+# Tari network id
+VITE_NETWORK=16 # LocalNet
+```
+
 ### Example of Updated `package.json`
 Your `package.json` should now look similar to this after the dependencies are installed:
 
@@ -149,6 +125,10 @@ Below is the package.json file specifically from the sample project:
   }
 }
 ```
+
+### 
+
+
 
 ## Using the Tari.js Library
 ### Hello Ootle Example
