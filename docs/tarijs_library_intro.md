@@ -44,8 +44,10 @@ VITE_POOL_INDEX_COMPONENT=component_c25b2d005572d3cc488119afb3fd7da3dfbfe61da26a
 VITE_WALLET_CONNECT_PROJECT_ID=78f3485d08b9640a087cbcea000e1f8b
 
 # Tari network id
-VITE_NETWORK=16 # LocalNet
+VITE_NETWORK=36 # Testnet
 ```
+
+Be sure to update the `vite_network` value to 36 for the `igor` network. The templates for the `tariswap-ui` project are referencing the existing addresses on the ContractNet.
 
 ### Example of Updated `package.json`
 Your `package.json` should now look similar to this after the dependencies are installed:
