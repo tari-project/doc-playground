@@ -11,8 +11,10 @@ The documents are divided into the following sections:
 * [Tari.JS Library](tarijs_library_intro.md) - An explanation of the Tari.js library for use in TypeScript projects. For our examples, we'll be using React and Vite.
 * [Tari Templates](hackathon_templates.md) - an explanation of Tari templates - what they are, how they work and some basic examples, with a link to more detailed documentation for the `tari_template_lib`
 
-## What is a Tari App?
+## What is the Ootle?
+If you're unfamiliar with the Ootle, we'd like to encourage you to read the [Tari Introduction](tari-introduction.md), which gives a quick, high-level overview of Tari, the Ootle and its various components. While not necessary, it will help provide further context.
 
+## What is a Tari App?
 Much focus has been placed on Ootle apps within Universe, a easy to set up, one-click miner for Minotari. The current implementation will serve web apps via the Universe interface in iFrames.
 
 Core to the apps are templates - reusable functionality coded in Rust using the Ootle's `template library, (tari_template_lib)` - which are then compiled as WASM files and commited to the Ootle network. These can then be called to create `components` on the Ootle that can be leveraged by your app.
@@ -29,7 +31,6 @@ So ultimately, your app will consist of:
 * A wallet that can interact with the Ootle.
 
 ## Getting prepped
-
 We've focused on making sure that it's easy to get set up and started, so we've done some pre-setup on our side. However, you're still going to need to configure a couple of items before you can get going.
 
 You'll be using ContractNet, a test network for the Ootle. We've deployed ContractNet so participants can leverage off a common set of already deployed templates as well as potentially interact with other participants (network games, for example)
@@ -155,14 +156,13 @@ git clone https://github.com/tari-project/tari-dan.git
 And run the wallet via `cargo run --bin tari_dan_wallet_daemon --release -- -b data/w3 --network igor --indexer-url=http://18.217.22.26:12006/json_rpc` directly from the Ootle project.
 
 ### Setting up and using the Tari CLI
-
-The `tari cli` tool, located [here](https://github.com/tari-project/tari-cli/), is used to generate boilercode for template projects and generate a couple of pre-existing templates for review. Instructions can be found on the main page of repo, but in short:
+The `tari cli` tool, located [here](https://github.com/tari-project/tari-cli/), is used to generate template projects and create a couple of pre-existing templates for review. Instructions can be found on the main page of repo, but in short:
 
 ```bash
 ./tari create project_name
 ```
 
-The above command will create a new skeleton project for template creation. Templates are then placed in the `templates` folder.
+The above command will create a new skeleton project for template creation. Templates are then placed in the `templates` folder. To create a new template, 
 
 ```bash
 ../tari new [...yourtemplatename...]
@@ -192,30 +192,3 @@ This will generate a .wasm file in the `target/wasm32-unknown-unknown/release` d
 You can upload this file via the `Publish Template` button in your Wallet UI:
 
 ![Alt text](images/publish_template_wallet.png)
-
-
-
-## Digging into the sample project
-
-* Ideally, you'll need to set up Rust in your desired Integrated Development Environment (IDE). If you're unsure where to start, our [Setting Up Your Development Environment Guide](https://tari.com/lessons/08_setting_up_development_environment) is a good starting point
-
-* The Ootle Wallet Daemon. This is your wallet on the second layer and how you will be interacting with ContractNet via Tari.js (more on this in a bit).
-
-* Once set up, you'll need to grab some free test tokens so you can submit transactions, deploy templates and more.
-
-* The Tari.js library, [located here](https://github.com/tari-project/tari.js/). This typescript library should help you perform some of the common functions and calls for the wallet easily via jRPC. A detailed guide for the library can be found here: 
-
-* **Optional** We have created a sample project (A decentralized exchange smart contract on the Tari network. The main functions include swapping tokens, adding liquidity, and removing liquidity.) that leverages Tari.js, so you have some practical working examples. 
-
-In addition, we'll cover some basic implementations and actions you can perform with code examples so you can get started.
-
-
-
-
-
-
-
-
-## But firstly - what is the Ootle?
-
-If you're unfamiliar with the Ootle, we'd like to encourage you to read the [Tari Introduction](tari-introduction.md), which gives a quick, high-level overview of Tari, the Ootle and it's various components.
