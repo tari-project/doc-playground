@@ -24,9 +24,6 @@ A big shoutout to [martinserts](https://github.com/martinserts) for putting toge
 A sample project, [tariswap-ui](https://github.com/mrnaveira/tariswap-ui), has been created for the purpose of demonstrating tari.js implementation as well as leveraging some basic templates. The Tariswap project implements a decentralized exchange smart contract on the Tari network, using a constant-product automated market maker.
 
 ### env. Example
-
-
-
 ```rust
 # Template address of the fungible faucet (TestFaucet)
 VITE_FAUCET_TEMPLATE=15507b9da703b7f42683e218ff67f2f35debc0c2aa2258b5832a7710070574e1
