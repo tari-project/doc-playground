@@ -14,7 +14,9 @@ theme:
   logo: assets/images/node-icon.svg
   favicon: assets/images/android-icon-192x192.png
   features:
+    - navigation.sections
     - navigation.footer
+    - navigation.indexes
     - content.tooltips
     - navigation.tabs
     - toc.integrate
