@@ -6,7 +6,6 @@ The objective of the Hackathon is simple - develop an app that utilises the Ootl
 
 We will take through a number of lessons: 
 
-1. A step-by-step guide to making a "Hello World" Ootle app, which will help you set up a working development environment and introduces the fundamental concepts such as the Ootle Wallet, Tari.JS Library and interaction with templates (smart contracts).
 2. Common calls in Tari.js and interaction with some built-in templates 
 3. An introduction to Tari Templates and how one develops and deploys their own templates.
 4. Ideas for apps, some existing example projects and links to more detailed documentation.
@@ -19,8 +18,8 @@ To get started, head to the "Hello World" page
 
     ---
 
-    Get a Ootle web app up and running in under an hour!
-     [:octicons-arrow-right-24: hackathon](#)
+    A step-by-step guide to making a "Hello World" Ootle app, which will help you set up a working development environment and introduces the fundamental concepts such as the Ootle Wallet, Tari.JS Library and interaction with templates (smart contracts).
+     [:octicons-arrow-right-24: What is Tari?](#)
 </div>
 
 
