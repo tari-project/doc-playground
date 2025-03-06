@@ -38,6 +38,7 @@ theme:
       accent: deep orange
 
 markdown_extensions:
+  - md_in_html
   - abbr
   - attr_list
   - pymdownx.emoji:
