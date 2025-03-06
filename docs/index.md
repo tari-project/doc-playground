@@ -19,7 +19,7 @@ To get started, head to the "Hello World" page
     ---
 
     A step-by-step guide to making a "Hello World" Ootle app, which will help you set up a working development environment and introduces the fundamental concepts such as the Ootle Wallet, Tari.JS Library and interaction with templates (smart contracts).
-     [:octicons-arrow-right-24: What is Tari?](#)
+     [:octicons-arrow-right-24: Getting Started](hackathon.md)
 </div>
 
 
