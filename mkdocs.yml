@@ -2,7 +2,7 @@ site_name: Tari Docs
 nav:
 # - Introduction: tari-introduction.md
 # - Getting Started: tari-templates.md
-- Home: index.ms
+- Home: index.md
 - Hello Ootle!:
   - Getting Started: helloootle/getting-started.md
   - Pre-requisites:
