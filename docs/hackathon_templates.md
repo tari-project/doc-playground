@@ -211,7 +211,7 @@ pub fn total_supply(&self) -> Amount {
 This function returns the total supply of the fungible token. `ResourceManager::get()` method retrieves information about the resource using its address, and `total_supply()` gives the total number of tokens in existence for that resource.
 
 ## Available Templates
-The following templates have already been deployed to the network by default (You can view all currently deployed templates [here](http://18.217.22.26:12005/templates) ):
+The following templates have already been deployed to the network by default (You can view all currently deployed templates [here](http://18.217.22.26:12005/templates)):
 
 * Account, XtraFaucet and AccountNFT are deployed by default on any new instance of the Ootle (for example, if you want to run your own local Swarm). This gives you, out of the box, templates from which to create accounts, send and receive transactions, create accounts, perform withdrawals and create proofs for confidential transactions. `XtraFaucet` exists mainly to distribute free coins to the wallet, while AccountNFT let's you mint NFTs.
 

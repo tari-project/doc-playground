@@ -1,22 +1,28 @@
 # Ootle Wallet Setup
-
 In order to interact with the Ootle, you will need an Ootle Wallet. The Ootle Wallet not only holds your funds and other assets on the Ootle Network, but is also the tool which we use to interact with the Ootle.
 
 While you are not limited to specifically using the Ootle Wallet, for our example we would like to recommend doing so.
 
-You can download the Ootle Wallet here for your operating system of choice: 
-[Ootle Wallet (Mac)](definitelyareallink.html)
-[Ootle Wallet (Windows)](alsodefinitelyareallink.html)
+You can download the Ootle Wallet here for your operating system of choice:
+
+- [Ootle Wallet (Mac)](definitelyareallink.html)
+- [Ootle Wallet (Windows)](alsodefinitelyareallink.html)
 
 ## Running the Wallet
-When you have downloaded the wallet, open up your Command Line Interface (CLI) and run the following command:
+When you have downloaded the wallet, you'll need to run it from the terminal. Let's open the folder in terminal: 
 
+- On Mac, right-click on the folder in which the Ootle Wallet is located in Finder and select “New Terminal at Folder”
+- On Windows, in the folder containing the Ootle wallet, enter “CMD” into the address bar
+
+Once done, run the following command:
+   
 ```bash
 ./tari_dan_wallet_daemon --help
 ```
+
 This will provide useful information in addition to command instructions - specifically, the default base directory and the location of the config file.
 
-To start the wallet, run:
+Fortunately, you don't have to edit anything at this stage - we just need to run the wallet. To start the wallet, run:
 
 ```bash
 tari_dan_wallet_daemon --network igor
@@ -46,14 +52,15 @@ Next, you're going to want to access the wallet. Use your browser and open the l
 
 Enter the Account Name and select **"Create Account"** to create the associated account and proceed to the main wallet interface.
 
-![Alt text](images/tari_dan_wallet_account_creation.png)
+![Alt text](../images/tari_dan_wallet_account_creation.png)
 
 This will be your primary wallet to use with either your unique app or the sample app provided. Once created, you'll see the following:
 
-![Alt text](images/wallet_interface.png)
+![Alt text](../images/wallet_interface.png)
 
 The important actions here for now are:
-- `Claim Free Tokens`, which will give you the necessary tokens required to perform transactions, submit contracts and perform other activities on the Ootle. By default, you should receive enough test tokens to mess around - if not, you can press this button.
-- `Connect with WalletConnect`, which will allow you to connect your wallet with your app for testing purposes (more in a bit).
 
-`Publish template`, which allows you to select a compiled WASM template for upload, estimate the fees required to submit and prevent you from uploading too large a template, will be discussed in our template guide.
+- **`Claim Free Tokens`**, which will give you the necessary tokens required to perform transactions, submit contracts and perform other activities on the Ootle. By default, you should receive enough test tokens to mess around - if not, you can press this button.
+- **`Connect with WalletConnect`**, which will allow you to connect your wallet with your app for testing purposes (more in a bit).
+
+**`Publish template`**, which allows you to select a compiled WASM template for upload, estimate the fees required to submit and prevent you from uploading too large a template, will be discussed in our template guide.

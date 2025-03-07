@@ -6,10 +6,10 @@ The objective of the Hackathon is simple - develop an app that utilises the Ootl
 
 The documents are divided into the following sections:
 
-* Hackthon Intro & Setup - the page you're reading right now. An explanation of what a Tari App consists of, and instructions for setting up all the necessary tools for working with the Ootle.
-* Hackathon Sample Projects - Covering a simply counter app and a more robust DEX-related app, Tariswap.
-* [Tari.JS Library](tarijs_library_intro.md) - An explanation of the Tari.js library for use in TypeScript projects. For our examples, we'll be using React and Vite.
-* [Tari Templates](hackathon_templates.md) - an explanation of Tari templates - what they are, how they work and some basic examples, with a link to more detailed documentation for the `tari_template_lib`
+- Hackthon Intro & Setup - the page you're reading right now. An explanation of what a Tari App consists of, and instructions for setting up all the necessary tools for working with the Ootle.
+- Hackathon Sample Projects - Covering a simply counter app and a more robust DEX-related app, Tariswap.
+- [Tari.JS Library](tarijs_library_intro.md) - An explanation of the Tari.js library for use in TypeScript projects. For our examples, we'll be using React and Vite.
+- [Tari Templates](hackathon_templates.md) - an explanation of Tari templates - what they are, how they work and some basic examples, with a link to more detailed documentation for the `tari_template_lib`
 
 ## What is the Ootle?
 If you're unfamiliar with the Ootle, we'd like to encourage you to read the [Tari Introduction](tari-introduction.md), which gives a quick, high-level overview of Tari, the Ootle and its various components. While not necessary, it will help provide further context.
@@ -25,10 +25,10 @@ Regardless of whether your leaning on existing templates or creating your own, y
 
 So ultimately, your app will consist of:
 
-* Templates that define methods you can call upon to interact with the Ootle through their generated components.
-* The `tari.js` TypeScript library to easily interact with the Ootle and deployed templates in your web app via a wallet.
-* The actual web app itself, accessible directly through the browser or Universe via iFrame once the URL has been listed. The easist to get started is a React app.
-* A wallet that can interact with the Ootle.
+- Templates that define methods you can call upon to interact with the Ootle through their generated components.
+- The `tari.js` TypeScript library to easily interact with the Ootle and deployed templates in your web app via a wallet.
+- The actual web app itself, accessible directly through the browser or Universe via iFrame once the URL has been listed. The easist to get started is a React app.
+- A wallet that can interact with the Ootle.
 
 ## Getting prepped
 We've focused on making sure that it's easy to get set up and started, so we've done some pre-setup on our side. However, you're still going to need to configure a couple of items before you can get going.
@@ -36,8 +36,9 @@ We've focused on making sure that it's easy to get set up and started, so we've 
 You'll be using ContractNet, a test network for the Ootle. We've deployed ContractNet so participants can leverage off a common set of already deployed templates as well as potentially interact with other participants (network games, for example)
 
 The following URLs are important to note:
-* The [Indexer Node: http://18.217.22.26:12006/json_rpc](http://18.217.22.26:12006/json_rpc): The jRPC address for the indexer node. You'll need to ensure your wallet is connecting to this for your transactions.
-* The [Validator Node: http://18.217.22.26:12005](http://18.217.22.26:12005): The Validator Node for ContractNet. We've only deployed a single node at this point, but if you want to review blocks, deployed templates, etc, this is the place to do it.
+
+- The [Indexer Node: http://18.217.22.26:12006/json_rpc](http://18.217.22.26:12006/json_rpc): The jRPC address for the indexer node. You'll need to ensure your wallet is connecting to this for your transactions.
+- The [Validator Node: http://18.217.22.26:12005](http://18.217.22.26:12005): The Validator Node for ContractNet. We've only deployed a single node at this point, but if you want to review blocks, deployed templates, etc, this is the place to do it.
 
 A list of available templates can be found in the [Tari Templates](hackathon_templates.md)
 

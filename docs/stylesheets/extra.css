@@ -1,0 +1,29 @@
+/* Footer styling */
+footer {
+    position: fixed; /* Fix the footer at the bottom */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #f1f1f1; /* Adjust as needed */
+    padding: 0px 0; /* Reduced padding to decrease footer height */
+    text-align: center;
+    z-index: 100;
+    font-size: 12px; /* Optionally adjust font size to reduce footer height */
+}
+
+/* Add padding to the body to prevent content from being overlapped by the footer */
+body {
+    padding-bottom: 80px; /* Increased padding for more space below the content */
+}
+
+/* Ensure content does not get hidden behind the footer in short pages */
+main {
+    padding-bottom: 80px; /* Increased this value to match the body padding */
+}
+
+/* Style for inline code (text in backticks) */
+code {
+    background-color: #2c6e2f; /* Dark green background */
+    color: white;              /* White text */
+    padding: 0.2em 0.4em;      /* Optional: add some padding to make it stand out */
+    border-radius: 4px;        /* Optional: rounded corners for a softer look */

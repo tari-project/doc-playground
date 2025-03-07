@@ -8,15 +8,23 @@ nav:
   - Pre-requisites:
     - Setting up the Ootle Wallet: helloootle/setting-up-ootle-wallet.md
     - Setting up your IDE: helloootle/setting-up-ide-environment.md
+    - Create a Web App Project: helloootle/creating-a-basic-web-app.md
+  - Running The App:
+    - Running your React App: helloootle/running-react-app.md
+
+
 - Hackathon: hackathon.md
 - Templates: hackathon_templates.md
 - Tari JS Library: tarijs_library_intro.md
 
+extra_css:
+  - stylesheets/extra.css  # Make sure this path is correct relative to your project
+
 theme:
   name: material
   font:
-    text: Merriweather Sans
-    code: Red Hat Mono
+    text: Roboto
+    code: Roboto Mono
   logo: assets/images/node-icon.svg
   favicon: assets/images/android-icon-192x192.png
   features:
@@ -28,7 +36,8 @@ theme:
 #    - navigation.tabs
 # #   - toc.integrate
 #    - toc.follow
-features:
+
+# features:
     - announce.dismiss
     - content.action.edit
     - content.action.view
