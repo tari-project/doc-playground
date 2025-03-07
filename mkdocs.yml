@@ -6,8 +6,8 @@ nav:
 - Hello Ootle!:
   - Getting Started: helloootle/getting-started.md
   - Pre-requisites:
-    - Setting up the Ootle Wallet: setting-up-ootle-wallet.md
-    - Setting up your IDE: setting-up-ide-environment.md
+    - Setting up the Ootle Wallet: helloootle/setting-up-ootle-wallet.md
+    - Setting up your IDE: helloootle/setting-up-ide-environment.md
 - Hackathon: hackathon.md
 - Templates: hackathon_templates.md
 - Tari JS Library: tarijs_library_intro.md
