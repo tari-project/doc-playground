@@ -2,6 +2,12 @@ site_name: Tari Docs
 nav:
 # - Introduction: tari-introduction.md
 # - Getting Started: tari-templates.md
+- Home: index.ms
+- Hello Ootle!:
+  - Getting Started: helloootle/getting-started.md
+  - Pre-requisites:
+    - Setting up the Ootle Wallet: setting-up-ootle-wallet.md
+    - Setting up your IDE: setting-up-ide-environment.md
 - Hackathon: hackathon.md
 - Templates: hackathon_templates.md
 - Tari JS Library: tarijs_library_intro.md
