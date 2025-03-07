@@ -25,7 +25,8 @@ theme:
     - navigation.indexes
     - content.tooltips
     - navigation.tabs
-    - toc.integrate
+ #   - toc.integrate
+    - toc.follow
   palette:
     # Dark Mode
     - scheme: slate
