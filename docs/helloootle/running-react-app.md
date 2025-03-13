@@ -1,2 +1,0 @@
-## Running the React App
-

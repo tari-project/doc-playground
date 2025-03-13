@@ -20,13 +20,21 @@ In the terminal, run the following command below, and select `Y` to continue
 npm create vite@latest
 ```
 
-You'll be asked to enter a project name. You can call it what you like but to make it easy to follow along, let's call it the `'hackathon-app`. 
+When you run this command, you'll be likely asked to install the following. Select `Y` to continue
+
+```bash
+Need to install the following packages:
+create-vite@6.3.1
+Ok to proceed? (y)
+```
+
+You'll be asked to enter a project name. You can call it what you like but to make it easy to follow along, let's call it the `'helloootle-app`. 
 
 ```bash
 > npx
 > create-vite
 
-✔ Project name: … hackathon-app
+✔ Project name: … helloootle-app
 ```
 Next, select `React` from the list of options:
 
@@ -54,6 +62,30 @@ Lastly, choose the `Typescript` variant:
     JavaScript + SWC
     React Router v7 ↗
 ```
+
+Once this is done, you'll be instructed to enter the following commands. Do so in the same terminal:
+
+```bash
+  cd latest
+  npm install
+  npm run dev
+  ```
+
+The above will install all the necessary dependencies and then run the template Vite + React application. When running the application, you'll see the following message:
+
+```bash
+  VITE v6.2.1  ready in 123 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose
+  ➜  press h + enter to show help
+  ```
+
+The `localhost:port` address indicates that you have the app running locally at that address. Entering the address in your browser will open up the stock app. You'll see something equivalent to the below:
+
+You can view the project and its associated files on the left-hand side of VS Code
+
+We'll be modifying this app to get your Hello Ootle app up and running. For now, you can proceed to the next step.
 
 ## Installing the dependencies
 

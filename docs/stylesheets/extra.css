@@ -27,3 +27,25 @@ code {
     color: white;              /* White text */
     padding: 0.2em 0.4em;      /* Optional: add some padding to make it stand out */
     border-radius: 4px;        /* Optional: rounded corners for a softer look */
+}
+
+/* Adjust spacing between navigation items when collapsed */
+.md-nav .md-nav__list {
+    padding-top: 10px; /* Add top padding to the entire list */
+}
+
+.md-nav .md-nav__item {
+    margin-bottom: 10px;  /* Add space between each navigation item */
+}
+
+/* Reduce space between headings and normal text */
+.md-content h1, .md-content h2, .md-content h3, .md-content h4, .md-content h5, .md-content h6 {
+    font-weight: bold;
+    font-family: 'Arial Bold', sans-serif;
+    margin-bottom: 0.5em !important; /* Force this with !important */
+}
+
+/* Optionally reduce space between paragraphs and headings */
+.md-content p {
+    margin-top: 0.5em !important; /* Add !important to ensure it takes precedence */
+}
