@@ -69,7 +69,7 @@ Once this is done, you'll be instructed to enter the following commands. Do so i
   cd latest
   npm install
   npm run dev
-  ```
+```
 
 The above will install all the necessary dependencies and then run the template Vite + React application. When running the application, you'll see the following message:
 
@@ -79,7 +79,7 @@ The above will install all the necessary dependencies and then run the template 
   ➜  Local:   http://localhost:5173/
   ➜  Network: use --host to expose
   ➜  press h + enter to show help
-  ```
+```
 
 The `localhost:port` address indicates that you have the app running locally at that address. Entering the address in your browser will open up the stock app. You'll see something equivalent to the below:
 
