@@ -49,3 +49,10 @@ code {
 .md-content p {
     margin-top: 0.5em !important; /* Add !important to ensure it takes precedence */
 }
+
+/* centers all images */
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }

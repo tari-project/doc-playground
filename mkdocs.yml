@@ -11,7 +11,7 @@ nav:
     - Create a Web App Project: helloootle/creating-a-basic-web-app.md
   - Coding your Project:
     - Adding the Wallet to your App: helloootle/adding-your-wallet.md
-
+    - Connect to your Ootle Wallet via your App: helloootle/connecting-your-wallet-via-walletconnect.md
 
 # - Hackathon: hackathon.md
 - Templates: hackathon_templates.md
@@ -97,3 +97,8 @@ markdown_extensions:
   - pymdownx.details
   - pymdownx.tabbed:
       alternate_style: true
+  - codehilite:
+      guess_lang: false
+      use_pygments: true
+      noclasses: true
+      pygments_style: monokai
