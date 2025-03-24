@@ -27,8 +27,6 @@ When you've successfully connected, you'll likely see two JSON objects. See an e
 
 The first JSON object is the details of the wallet, including the `address` and `public key`
 
-
-
 ```json
 {
   "requestResult": {
@@ -60,6 +58,3 @@ The second returns the balances of the wallet across its different components. F
   ]
 }
 ```
-
-## Changing our app to also display the Wallet Name
-

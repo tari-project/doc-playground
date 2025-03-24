@@ -1,4 +1,4 @@
-# Getting Started with Template & Ootle Development
+# Getting Started with Templates
 
 Development on the Ootle, at its most basic, begins with the templates and smart contracts generated from them. These are the foundational blocks required to perform any Ootle specific functions.
 
@@ -6,135 +6,25 @@ But what are these? Think of a template as a specification for a smart contract.
 
 The community has focused on developing many templates for common activities envisioned for the Ootle with security and stability in mind. Rather than reinvent the wheel every time you would like to, for example, create an NFT series, you can leverage the templates that have been incorporated into the template library. However, for your own unique services or requirements, you may need to create your own.
 
-So, to develop within the Ootle (both apps or Tari templates), you're going to need the following:
+To develop within the Ootle (both apps or Tari templates), you're going to need the following:
 
-* Ideally, you'll need to set up Rust in your desired Integrated Development Environment (IDE). If you're unsure where to start, our [Setting Up Your Development Environment Guide](https://tari.com/lessons/08_setting_up_development_environment) is a good starting point
-* You will need a Minotari Base Node, 
+* The Tari CLI for quick scaffolding of template projects
+* The `tari_template_lib` dependency
+* Compile the template into WebAssembly (WASM) and commit it to the network.
 
-* The Tari Swarm is a testing tool that handles the creation and configuration of Indexer Nodes, Validator Nodes and other factors on your local machine, with a useful web interface for testing contracts and performing other actions. 
-* [Optional] The Tari CLI tool allows prospective template developers to quickly set up a basic template project select from a number of pre-defined templates to review. Users can also deploy templates using the tool with fee estimation and more.
+This guide assumes some basic knowledge of Git, Cargo and Rust.
 
-This Getting Started guide assumes some basic knowledge of Git, Cargo and Rust.
+## Rust Template Documentation 
+Documentation for the `tari_template_lib` can be found [here](https://docs.rs/tari_template_lib/latest/tari_template_lib/)
 
-## Basic Concepts
-
+## Basic Concepts of the Ootle
 - **Runtime Environment**: The runtime environment handles various elements such as buckets, proofs, substates, and components. It provides methods for manipulating these elements and managing their interactions. This includes the Tari Virtual Machine (TVM)
 - **Workspace**: Manages variables and proofs, providing methods to insert and retrieve indexed values. It's a localised instance of the variables required when performing a transaction against a smart contract that exists within the TVM.
 - **Component**: A reusable and addressable entity with associated state and methods. This exists as a substate on the Ootle, that can be called when required via a unique address.
 - **Bucket**: Handles resources within the component or workspace. Buckets are used to securely move data between vaults.
 - **Vault**: Securely stores resources and manages access control. An example of a vault is a collection of tokens, which needs to be updated as people withdraw or deposit more tokens into the vault.
 
-Some examples include:
-
-### **Creating a Component**
-Components represent reusable and addressable entities with associated state and methods.
-   ```rust
-   let component_address = component_manager.create_component(data);
-   ```
-
-### **Managing a Bucket**
-Buckets handle resources within the component or workspace.
-   ```rust
-   let bucket_id = working_state.new_bucket_id();
-   working_state.new_bucket(bucket_id, resource_container)?;
-   ```
-
-### **Handling Proofs**
-Proofs are used for authorization and validation within the component.
-   ```rust
-   let proof_id = ProofId::new();
-   working_state.new_proof(proof_id, locked_resource)?;
-   ```
-### **Creating and Managing Vaults**
-Vaults securely store resources and manage access control.
-   ```rust
-   let resource_container = ResourceContainer::new(resource_address, amount);
-   let vault = Vault::new(resource_container);
-   workspace.insert_vault(vault_id, vault)?;
-   ```
-### **Accessing a Vault**
-Components or accounts can interact with vaults to deposit or withdraw resources.
-   ```rust
-   let vault = workspace.get_vault(vault_id)?;
-   vault.deposit(amount);
-   ```
-
-### **Runtime Environment Interaction**
-The runtime environment manages the execution of code and interactions between components. It handles tasks such as logging, memory management, and invoking actions on components.
-   ```rust
-      // Example of logging within the runtime environment
-   runtime.emit_log(LogLevel::Info, "Component created".to_string())?;
-
-   // Example of invoking a method on a component
-   let component_header = runtime.load_component(&component_address)?;
-   ```
-
-## Setting up the Tari Swarm 
-
-To set up the Tari Swarm, you will need to run it from the official repos.
-
-* [Tari](https://github.com/tari-project/tari)
-* [The Ootle](https://github.com/tari-project/tari-dan)
-
-First, open the terminal and create a folder that you would like to clone both repos into, then clone the repo using their **https** link from the Code dropdown. You'll need to run the following commands:
-
-```sh
-git clone https://github.com/tari-project/tari.git
-git clone https://github.com/tari-project/tari-dan.git
-```
-
-Change the directory to the cloned tari directory. You need to use a specific branch (feature-dan2) in order to successfully build the project. Run:
-
-```bash
-git checkout feature-dan2
-```
-
-Next, change the directory to the tari-dan folder. You will need to create a config file for the Tari Swarm Daemon, so run:
-
-```bash
-cargo run --bin tari_swarm_daemon --release -- -c data/swarm/config.toml init
-```
-
-This will create the necessary **config.toml** file. Feel free to open the file and confirm the settings. While most of the defaults are fine, you should update the number of validator nodes to at least 2. This will allow your local Tari swarm to be able to form a committee and reach consensus on any instruction that is submitted to the indexer node.
-
-```toml
-[[instances]]
-name = "Validator node"
-instance_type = "TariValidatorNode"
-num_instances = 1
-
-[instances.settings]
-```
-
-Once you have updated the config.toml to your liking, save the changes. You will then need to run it from the same folder you ran the previous cargo command from. Run:
-
-```bash
-cargo run --bin tari_swarm_daemon --release -- -c data/swarm/config.toml start
-```
-
-As this loads, you will be presented with the Tari terminal interface, and it will proceed to run through some commands.
-
-!!! Warning
-    You may encounter an error during this process regarding the base node. This is because the process was likely unable to locate a "localnet" folder inside the minotari-node-00 folder that was created on launch. To resolve this, simply create a "localnet" folder in minotari-node-00 folder.
-    ```
-    tari-dan
-    └── /data
-        └── /swarm
-            └── /processes
-                └── /minotari_node_00
-                    └── /localnet ## Create this folder
-    ```
-
-
-Rerun:
-```
-cargo run --bin tari_swarm_daemon --release -- -c data/swarm/config.toml start
-```
-
-Give it a few minutes to get going. Once you've done so, you should be able to browse to the Tari Swarm Daemon by visiting https://localhost:8080
-
 ## Writing Your First Template
-
 We'll go through a simple template that will introduce you to the structure of a template and the core elements that are utilised. Below is the code for a template that will create a simple counter
 
 ```rust
@@ -210,226 +100,141 @@ Lastly, we have several methods for interacting with the structure contained wit
     }
 ```
 
-These are the means that we are going to intereact with the data type we've created in the Counter structure. We can create a new counter value (so we can have multiple Counter values running), a means to check the current value of the counters, and a method to increase any counter's value by 1.
+These are the means that we are going to intereact with the data type we've created in the Counter structure. We can create a new counter component on the network (so we can have multiple Counter components running at each of their component addresses), a method to call the current value of the counters, and a method to increase any counter's value by 1.
 
-## How are templates deployed to the network
+## Template Incorporating Vaults and Buckets
+The `counter` template above is extremely simple - create a component on the Ootle, store a value in it and increment it. However, most of the interactions you will be with more complex `models` and `structs`. 
 
+Consider the following example: you'd like to be able to mint your own meme coin, then distribute it freely to participants. You need to be able to burn these tokens if necessary, as well as track the total supply.
 
+Fortunately, we already have a `fungible` template. You can generate it from the Tari CLI, but let's go through it here:
 
+```rust
+use tari_template_lib::prelude::*;
 
-### Simple Setup - Wallet Daemon
+#[template]
+pub mod fungtoken {
+    use super::*;
 
-To create a wallet, add funds to it, and send a transaction using the tools in the tari-dan repository, follow these steps:
+    pub struct Fungtoken {
+        vault: Vault,
+    }
 
-#### Create the Wallet
+    impl Fungtoken {
+        pub fn mint(initial_supply: Amount, token_symbol: String) -> Component<Self> {
+            let coins = ResourceBuilder::fungible()
+                .with_token_symbol(&token_symbol)
+                .initial_supply(initial_supply);
 
-1. **Run the Wallet Daemon**:
-   ```
-   cargo run --bin tari_dan_wallet_daemon -- -b .
-   ```
+            Component::new(Self { vault: Vault::from_bucket(coins) })
+                .with_access_rules(AccessRules::allow_all())
+                .create()
+        }
 
-2. **Create an Account**:
-   Use the Tari Dan Wallet CLI to create an account:
-   ```
-   cargo run --bin tari_dan_wallet_cli -- accounts create --account-name <USER_ACCOUNT_NAME>
-   ```
+        pub fn vault_address(&self) -> ResourceAddress {
+            self.vault.resource_address()
+        }
 
-#### Add Funds to the Wallet
+        pub fn take_free_coins(&mut self, amount: Amount) -> Bucket {
+            self.vault.withdraw(amount)
+        }
 
-1. **Request Airdrop**:
-   Use the Tari Dan Wallet CLI to request an airdrop of test coins:
-   ```
-   cargo run --bin tari_dan_wallet_cli -- accounts faucet --account-name <USER_ACCOUNT_NAME> --amount <AMOUNT> --fee <FEE_AMOUNT>
-   ```
+        pub fn balance(&self) -> Amount {
+            self.vault.balance()
+        }
 
-2. **Claim Free Testnet Coins**:
-   Alternatively, you can claim free testnet coins using the web UI or JSON RPC:
-   ```tsx
-   const onClaimFreeCoins = async () => {
-     await mutateCreateFeeTestCoins({
-       accountName: "TestAccount",
-       amount: 1_000_000_000,
-       fee: 1000,
-     });
-   };
-   ```
+        pub fn burn_coins(&mut self, amount: Amount) {
+            let bucket = self.vault.withdraw(amount);
+            bucket.burn();
+        }
 
-### Send a Transaction
-
-1. **Send Money**:
-   Use the Tari Dan Wallet CLI to send a transaction:
-   ```rust
-   pub async fn handle_send(args: SendArgs, client: &mut WalletDaemonClient) -> Result<(), anyhow::Error> {
-       let SendArgs {
-           source_account_name,
-           amount,
-           resource_address,
-           destination_public_key,
-           common,
-       } = args;
-
-       let destination_public_key =
-           PublicKey::from_canonical_bytes(&destination_public_key.into_inner()).map_err(anyhow::Error::msg)?;
-
-       let fee = common.max_fee.map(|f| f.try_into()).transpose()?;
-       let resp = client
-           .accounts_transfer(AccountsTransferRequest {
-               account: source_account_name,
-               amount: Amount::try_from(amount)?,
-               resource_address,
-               destination_public_key,
-               max_fee: fee,
-               proof_from_badge_resource: None,
-               dry_run: false,
-           })
-           .await?;
-
-       println!("Transaction: {}", resp.transaction_id);
-       println!("Fee: {} ({} refunded)", resp.fee, resp.fee_refunded);
-       println!();
-       summarize_finalize_result(&resp.result);
-
-       Ok(())
-   }
-   ```
-
-2. **Using the Web UI**:
-   You can also send money using the web UI:
-   ```tsx
-   export function SendMoneyDialog(props: SendMoneyDialogProps) {
-     const INITIAL_VALUES = {
-       publicKey: "",
-       outputToConfidential: false,
-       inputSelection: "PreferRevealed",
-       amount: "",
-       fee: "",
-       badge: null,
-     };
-     const isConfidential = props.resource_type === "Confidential";
-     const [useBadge, setUseBadge] = useState(false);
-     const [disabled, setDisabled] = useState(false);
-     const [transferFormState, setTransferFormState] = useState(INITIAL_VALUES);
-     const [validity, setValidity] = useState<object>({
-       publicKey: false,
-       amount: false,
-     });
-     const [allValid, setAllValid] = useState(false);
-
-     const { accountName, setPopup } = useAccountStore();
-
-     const { data } = useAccountsGetBalances(accountName);
-     const badges = data?.balances
-       ?.filter((b: BalanceEntry) => b.resource_type === "NonFungible" && b.balance > 0)
-       .map((b: BalanceEntry) => b.resource_address) as string[];
-
-     const { mutateAsync: sendIt } = useAccountsTransfer(
-       accountName,
-       parseInt(transferFormState.amount),
-       props.resource_address || XTR2,
-       transferFormState.publicKey,
-       parseInt(transferFormState.fee),
-       props.resource_type === "Confidential",
-       !transferFormState.outputToConfidential,
-       transferFormState.inputSelection as ConfidentialTransferInputSelection,
-       transferFormState.badge,
-       false,
-     );
-
-     function setFormValue(e: React.ChangeEvent<HTMLInputElement>) {
-       setTransferFormState({
-         ...transferFormState,
-         [e.target.name]: e.target.value,
-       });
-       if (validity[e.target.name as keyof object] !== undefined) {
-         setValidity({
-           ...validity,
-           [e.target.name]: e.target.validity.valid,
-         });
-       }
-     }
-
-     const onTransfer = async () => {
-       if (accountName) {
-         setDisabled(true);
-         if (!isNaN(parseInt(transferFormState.fee))) {
-           sendIt?.()
-             .then(() => {
-               setPopup({ title: "Transaction submitted", error: false });
-             })
-             .catch((e) => {
-               setPopup({ title: "Transaction failed", error: true, message: e.message });
-             })
-             .finally(() => {
-               setDisabled(false);
-             });
-         }
-       }
-     };
-   }
-   ```
-
-These steps should guide you through creating the wallet, adding funds, and sending transactions using the Tari Dan tools. For more details, refer to the [README](https://github.com/tari-project/tari-dan/blob/development/README.md) file and other relevant documentation in the repository.
-
-
-### Setting up the Tari CLI tool.
-
-This alone will not do anything on the Ootle. For this to work, you need to compile the Rust program into WebAssembly - a WASM file.
-
-While you can certainly build up a Rust program from scratch and subsequently build it, the Ootle provides another tool for the creation of template projects, in the ```tari-cli``` tool. You can find the project here: https://github.com/tari-project/tari-cli
-
-The tool is in active development, and currently has no released binaries. This means you will need to build the binary from the repo direct.
-
-Clone the repo locally, then build the project using the following commands:
-
-```
-git clone https://github.com/tari-project/tari-cli.git
-cd tari-cli
-cargo build --release
+        pub fn total_supply(&self) -> Amount {
+            ResourceManager::get(self.vault.resource_address()).total_supply()
+        }
+    }
+}
 ```
 
-Once built, you should find the ```tari``` command in the target folder under ```release```
+Let's go through each function in the code to explain what it's doing:
 
-Type the following command to get started:
+```rust
+    impl Fungtoken {
+        pub fn mint(initial_supply: Amount, token_symbol: String) -> Component<Self> {
+            let coins = ResourceBuilder::fungible()
+                .with_token_symbol(&token_symbol)
+                .initial_supply(initial_supply);
 
-```
-./tari --help
-```
-
-This will display a list of associated commands with the command tool. The three common ones ```create```, ```new``` and ```deploy```
-
-### Creating your Tari Project
-
-Let's go through each of these in order. ```create``` will create a base folder in which to store one or more template projects in the ```templates``` folder. Again, if you want more detailed information regarding the command, you can simply type ```./tari create --help```
-
-Run the following command to create a new project folder and associated files (replace the everything contained in the square brackets, including the brackets themselves, with your project name):
-
-```
-./tari create [...yourprojectname...]
+            Component::new(Self { vault: Vault::from_bucket(coins) })
+                .with_access_rules(AccessRules::allow_all())
+                .create()
+        }
 ```
 
-The most important file to concern yourself with within the project folder is the ```tari.config.toml``` file. Opening it will present the following configuration details:
+This function creates a new instance of the fungible token, called `Fungtoken`, and initializes it with an `initial_supply` of tokens, which is the amount of tokens minted. The `ResourceBuilder::fungible()` creates a fungible token resource. The `with_token_symbol()` method assigns a symbol to the token (like "USD" or "TARI"). The `initial_supply()` method specifies how many tokens should be minted initially.
 
-```toml
-# The address of the Wallet Daemon 
-[networks.local]
-wallet-daemon-jrpc-address = "http://127.0.0.1:12009/"
-uploader-endpoint = "http://127.0.0.1:8080/upload_template?register_template=false"
+The minted tokens are stored in a `Vault` using `Vault::from_bucket()`. The `with_access_rules(AccessRules::allow_all())` sets the permissions on the vault; you can specify specific accounts and holders of NFTs access, but this particular line allows anyone to interact with this component. A new component is created from the `Fungtoken` structure, and the tokens are stored in the `vault`.
 
-# The address of the Minotari Wallet
-[networks.local.wallet-grpc-config]
-authentication = "none"
-address = "http://127.0.0.1:12003/"
+```rust
+pub fn vault_address(&self) -> ResourceAddress {
+    self.vault.resource_address()
+}
+```
+This function returns the resource address of the vault. The resource address is the global identifier for the resource (fungible token) stored in the vault.
+
+```rust
+pub fn take_free_coins(&mut self, amount: Amount) -> Bucket {
+    self.vault.withdraw(amount)
+}
+```
+This function allows the smart contract to withdraw tokens from the vault and return them in the form of a `Bucket`. `withdraw(amount)` removes a specific amount of tokens from the vault and returns them as a bucket. What is not shown here is necessarily what is done with the `bucket` following withdrawal.
+
+```rust
+pub fn balance(&self) -> Amount {
+    self.vault.balance()
+}
+```
+This function returns the current balance of the fungible token in the vault.
+
+```rust
+pub fn burn_coins(&mut self, amount: Amount) {
+    let bucket = self.vault.withdraw(amount);
+    bucket.burn();
+}
+```
+This function allows the smart contract to "burn" tokens, i.e., permanently destroy a specified amount of tokens. First, the specified amount of tokens is withdrawn from the vault into a `Bucket`. Then, the `burn()` method is called on the `Bucket`, which destroys those tokens. Currently, the Ootle will panic if a bucket is attempted to be burned without the necessary permissions.
+
+```rust
+pub fn total_supply(&self) -> Amount {
+    ResourceManager::get(self.vault.resource_address()).total_supply()
+}
+```
+This function returns the total supply of the fungible token. `ResourceManager::get()` method retrieves information about the resource using its address, and `total_supply()` gives the total number of tokens in existence for that resource.
+
+## Available Templates
+The following templates have already been deployed to the network by default (You can view all currently deployed templates [here](http://18.217.22.26:12005/templates)):
+
+* Account, XtraFaucet and AccountNFT are deployed by default on any new instance of the Ootle (for example, if you want to run your own local Swarm). This gives you, out of the box, templates from which to create accounts, send and receive transactions, create accounts, perform withdrawals and create proofs for confidential transactions. `XtraFaucet` exists mainly to distribute free coins to the wallet, while AccountNFT let's you mint NFTs.
+
+In addition, several templates have been written over the course of the Ootle's development. Below is a non-exhaustive list of templates from different projects:
+
+* The Tari CLI tool, discussed in the [Hackathon](hackathon.md) section, allows the user to create several pre-existing templates:
+* The [Tari Tex](https://github.com/tari-labs/tex) includes templates for implementing a modern DEX on the Ootle.
+* Likewise, the [Tariswap](https://github.com/tari-project/tariswap-ui/tree/main/src) provides a similar implementation, but with a demonstration of leveraging the tari.js library for interactions via TypeScript
+* Two templates for creating stable coins can be found [here](https://github.com/tari-project/stable-coin/tree/main/templates/stable-coin)
+* Lastly, wihtin the Ootle itself, there are several test templates that can be reviewed [here](https://github.com/tari-project/tari-dan/dan_layer/engine/tests/templates)
+
+## How to deploy create template projects and deploy on the Ootle
+
+There are currently several methods that are available to deploy your contracts on the Ootle. We'll start with the recommended method and then touch on an alternative:
+
+### Recommended Method  
+The `tari cli` tool, located [here](https://github.com/tari-project/tari-cli/), is used to generate template projects and create a couple of pre-existing templates for review. Instructions can be found on the main page of repo, but in short:
+
+```bash
+./tari create project_name
 ```
 
-These configuration details must be changed to reflect the addresses and ports of the wallet daemon and your Minotari wallet. These currently use the Minotari wallet and wallet daemon set up when setting up your local testing environment via the Tari Swarm Daemon. You can find the ports for updating by visiting your localhost:8080 (the default address for the Tari Swarm Daemon) and scrolling down to the "All Instances" section.
- 
-Once you have set these, save the file. This is what ```tari``` will use to deploy your template when you're ready.
-
-### Creating a basic template from the available standard templates
-
-The ```new``` command allows you to create a standard template from one of several options that are pre-built into the tool. This allows you to view some basic functions that would be typical in the Ootle and what is required in each template to allow for this functionality.
-
-Via the command line, change the directory to the ```templates``` folder that was created in the previous step, then run the following command:
+The above command will create a new skeleton project for template creation. Templates are then placed in the `templates` folder. To create a new template, 
 
 ```bash
 ../tari new [...yourtemplatename...]
@@ -444,7 +249,18 @@ Via the command line, change the directory to the ```templates``` folder that wa
   Counter - A basic counter example template that can be incremented.
 ```
 
-You will have an option to select from the available templates to create a template. Note that you will be able to replace this template with your own. The counter template referenced earlier came from the ```Counter``` option.
+You will have an option to select from the available templates to create a template. Note that you will be able to replace this template with your own.
 
+The `README.md` on the project's main page provides all the instructions. The main difference here is that you will **NOT** need to use the `tari-cli` to deploy the template, as publishing the template can be done via the Ootle Wallet's web interface.
 
+To generate the WASM file from the project, you can run the following command:
 
+```bash
+cargo build --target wasm32-unknown-unknown --release
+```
+
+This will generate a .wasm file in the `target/wasm32-unknown-unknown/release` directory.
+
+You can upload this file via the `Publish Template` button in your Wallet UI:
+
+![Alt text](images/publish_template_wallet.png)

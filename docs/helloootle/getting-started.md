@@ -13,4 +13,4 @@ To begin with the Hello Ootle project, you will need a couple of items set up fi
 - A Tari Ootle Wallet.
 - An Integrated Development Environment (IDE) - where you'll be coding your project.
 
-Proceed to the next section to set up your Ootle Wallet.
+Proceed to the next section to set up your Ootle Wallet. If you want to proceed the sections in order, you can do so by using the navigation links at the bottom of the page. All sections for the Hello Ootle project are also available on the left.

@@ -94,7 +94,7 @@ Next, you're going to want to update your `package.json` file in the project to 
 Fortunately, you can just run the following command to do so:
 
 ```bash
-npm install @tari-project/tari-permissions @tari-project/tarijs @tari-project/typescript-bindings @tari-project/wallet_jrpc_client @tari-project/wallet-daemon-provider
+npm install @tari-project/tari-permissions @tari-project/tarijs @tari-project/typescript-bindings @tari-project/wallet_jrpc_client @tari-project/wallet-daemon-provider @tari-project/tari-universe-signer @tari-project/wallet-connect-signer
 ```
 
 Now, if you're new to VS Code, you'll see on the left-hand side, under the `Explorer` tab, a list of files that have been created. You can skip to the next section if you're already familiar with VS Code, but if not, you can start getting a feel for VS Code by locating the `package.json` and opening it.

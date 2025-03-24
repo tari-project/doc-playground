@@ -12,9 +12,11 @@ nav:
   - Coding your Project:
     - Adding the Wallet to your App: helloootle/adding-your-wallet.md
     - Connect to your Ootle Wallet via your App: helloootle/connecting-your-wallet-via-walletconnect.md
-
+    - Introduction to Templates: helloootle/accessing-the-counter-template.md
+    - Adding the Counter to your Project: helloootle/adding-the-counter-to-your-project.md
+      
 # - Hackathon: hackathon.md
-- Templates: hackathon_templates.md
+- Templates: tari-templates.md
 - Tari JS Library: tarijs_library_intro.md
 
 extra_css:
@@ -44,6 +46,7 @@ theme:
     - content.code.annotate
     - content.code.copy
     - content.tooltips
+    - content.tabs.link
     - navigation.footer
     - navigation.indexes
     - navigation.sections
@@ -95,10 +98,8 @@ markdown_extensions:
       alternate_style: true
   - admonition
   - pymdownx.details
-  - pymdownx.tabbed:
-      alternate_style: true
   - codehilite:
       guess_lang: false
       use_pygments: true
       noclasses: true
-      pygments_style: monokai
+      pygments_style: monokai  
