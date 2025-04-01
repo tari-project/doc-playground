@@ -4,17 +4,18 @@ nav:
 # - Getting Started: tari-templates.md
 - Home: index.md
 - Hello Ootle!:
-  - Getting Started: helloootle/getting-started.md
+  - Getting Started: helloootle/01-getting-started.md
   - Pre-requisites:
-    - Setting up the Ootle Wallet: helloootle/setting-up-ootle-wallet.md
-    - Setting up your IDE: helloootle/setting-up-ide-environment.md
-    - Create a Web App Project: helloootle/creating-a-basic-web-app.md
+    - Setting up the Ootle Wallet: helloootle/02-setting-up-ootle-wallet.md
+    - Setting up your IDE: helloootle/03-setting-up-ide-environment.md
+    - Create a Web App Project: helloootle/04-creating-a-basic-web-app.md
   - Coding your Project:
-    - Adding the Wallet to your App: helloootle/adding-your-wallet.md
-    - Connect to your Ootle Wallet via your App: helloootle/connecting-your-wallet-via-walletconnect.md
-    - Introduction to Templates: helloootle/accessing-the-counter-template.md
-    - Adding the Counter to your Project: helloootle/adding-the-counter-to-your-project.md
-      
+    - Adding the Wallet to your App: helloootle/05-adding-your-wallet.md
+    - Connect to your Ootle Wallet via your App: helloootle/06-connecting-your-wallet-via-walletconnect.md
+    - Introduction to Templates: helloootle/07-accessing-the-counter-template.md
+    - Adding the Counter to your Project: helloootle/08-adding-the-counter-to-your-project.md
+    - Interacting with Created Counters: helloootle/interacting-with-created-counters.md
+
 # - Hackathon: hackathon.md
 - Templates: tari-templates.md
 - Tari JS Library: tarijs_library_intro.md
