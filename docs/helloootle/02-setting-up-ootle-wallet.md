@@ -5,8 +5,7 @@ While you are not limited to specifically using the Ootle Wallet, for our exampl
 
 You can download the Ootle Wallet here for your operating system of choice:
 
-- [Ootle Wallet (Mac)](definitelyareallink.html)
-- [Ootle Wallet (Windows)](alsodefinitelyareallink.html)
+- [Ootle Wallet Releases](https://github.com/tari-project/tari-dan/releases)
 
 ## Running the Wallet
 When you have downloaded the wallet, you'll need to run it from the terminal. Let's open the folder in terminal: 
