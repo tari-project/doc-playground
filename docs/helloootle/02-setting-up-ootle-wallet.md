@@ -16,7 +16,7 @@ When you have downloaded the wallet, you'll need to run it from the terminal. Le
 Once done, run the following command:
    
 ```bash
-./tari_dan_wallet_daemon --help
+./tari_ootle_walletd --help
 ```
 
 This will provide useful information in addition to command instructions - specifically, the default base directory and the location of the config file.
@@ -24,7 +24,7 @@ This will provide useful information in addition to command instructions - speci
 Fortunately, you don't have to edit anything at this stage - we just need to run the wallet. To start the wallet, run:
 
 ```bash
-./tari_dan_wallet_daemon --network igor
+./tari_ootle_walletd --network igor
 ```
 
 The `--network igor` command ensures you are connecting to the Tari Ootle ContractNet, which is a test network Tari has created for the Ootle.
@@ -32,7 +32,7 @@ The `--network igor` command ensures you are connecting to the Tari Ootle Contra
 If no data exists, it will create a config file and associated data folder using the defaults mentioned in the help section.
 
 !!! tip "Tip"
-    You can pass the `-b` command and specify a directory to create a new wallet database and configuration file within your desired location. This can be useful if you are having issues or want to have multiple wallets available. If you are experiencing issues connecting to ContractNet with your wallet, you can use this full command to point directly to the Indexer node on ContractNet: `tari_dan_wallet_daemon -b {yourfolderforstoringdata} --network igor --indexer-url=http://18.217.22.26:12006/json_rpc`
+    You can pass the `-b` command and specify a directory to create a new wallet database and configuration file within your desired location. This can be useful if you are having issues or want to have multiple wallets available. If you are experiencing issues connecting to ContractNet with your wallet, you can use this full command to point directly to the Indexer node on ContractNet: `tari_ootle_walletd -b {yourfolderforstoringdata} --network igor --indexer-url=http://18.217.22.26:12006/json_rpc`
 
 This will start the wallet, and you should see the following below:
 

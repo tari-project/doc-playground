@@ -225,7 +225,7 @@ To create a wallet, add funds to it, and send a transaction using the tools in t
 
 1. **Run the Wallet Daemon**:
    ```
-   cargo run --bin tari_dan_wallet_daemon -- -b .
+   cargo run --bin tari_ootle_walletd -- -b .
    ```
 
 2. **Create an Account**:

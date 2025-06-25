@@ -99,7 +99,7 @@ Below is what you should be seeing in the package.json file following the above:
 ```
 
 ### Set up the Ootle Wallet Daemon
-You'll need the `tari_dan_wallet_daemon` to proceed. You'll be able to find the latest binaries [here](https://github.com/tari-project/tari-dan/releases). If you don't, look to the end of this section for an alternative means of running the `tari_dan_wallet_daemon`
+You'll need the `tari_ootle_walletd` to proceed. You'll be able to find the latest binaries [here](https://github.com/tari-project/tari-dan/releases). If you don't, look to the end of this section for an alternative means of running the `tari_ootle_walletd`
 
 !!! warning "Release binaries not available"
     Unfortunately, there are no release binaries currently available. It is recommended that you use the Alternative Method mentioned above. Once launched, however, instructions for creating the accounts and claiming fees are the same. 
@@ -107,7 +107,7 @@ You'll need the `tari_dan_wallet_daemon` to proceed. You'll be able to find the 
 Once you have it, open your terminal and run the following command:
 
 ```bash
-./tari_dan_wallet_daemon --help
+./tari_ootle_walletd --help
 ```
 
 This will provide useful information in addition to command instructions - specifically, the default base directory and the location of the config file.
@@ -115,13 +115,13 @@ This will provide useful information in addition to command instructions - speci
 To start the wallet, run:
 
 ```bash
-tari_dan_wallet_daemon --network igor
+tari_ootle_walletd --network igor
 ```
 
 If no data exists, it will create a config file and associated data folder using the defaults mentioned in the help section.
 
 !!! tip "Tip"
-    You can pass the `-b` command and specify a directory to create a new wallet database and configuration file within your desired location. This can be useful if you are having issues or want to have multiple wallets available. If you are experiencing issues connecting to ContractNet with your wallet, you can use this full command to point directly to the Indexer node on ContractNet: `tari_dan_wallet_daemon -b [yourfolderforstoringdata] --network igor --indexer-url=http://18.217.22.26:12006/json_rpc`
+    You can pass the `-b` command and specify a directory to create a new wallet database and configuration file within your desired location. This can be useful if you are having issues or want to have multiple wallets available. If you are experiencing issues connecting to ContractNet with your wallet, you can use this full command to point directly to the Indexer node on ContractNet: `tari_ootle_walletd -b [yourfolderforstoringdata] --network igor --indexer-url=http://18.217.22.26:12006/json_rpc`
 
 This will start the wallet, and you should see the following below:
 
@@ -154,7 +154,7 @@ If you have issues with the main method, you can also run the wallet directly fr
 git clone https://github.com/tari-project/tari-dan.git
 ```
 
-And run the wallet via `cargo run --bin tari_dan_wallet_daemon --release -- -b data/w3 --network igor --indexer-url=http://18.217.22.26:12006/json_rpc` directly from the Ootle project.
+And run the wallet via `cargo run --bin tari_ootle_walletd --release -- -b data/w3 --network igor --indexer-url=http://18.217.22.26:12006/json_rpc` directly from the Ootle project.
 
 ### Setting up and using the Tari CLI
 The `tari cli` tool, located [here](https://github.com/tari-project/tari-cli/), is used to generate template projects and create a couple of pre-existing templates for review. Instructions can be found on the main page of repo, but in short:
