@@ -24,7 +24,7 @@ This will provide useful information in addition to command instructions - speci
 Fortunately, you don't have to edit anything at this stage - we just need to run the wallet. To start the wallet, run:
 
 ```bash
-tari_dan_wallet_daemon --network igor
+./tari_dan_wallet_daemon --network igor
 ```
 
 The `--network igor` command ensures you are connecting to the Tari Ootle ContractNet, which is a test network Tari has created for the Ootle.

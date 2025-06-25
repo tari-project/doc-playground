@@ -14,7 +14,7 @@ nav:
     - Connect to your Ootle Wallet via your App: helloootle/06-connecting-your-wallet-via-walletconnect.md
     - Introduction to Templates: helloootle/07-accessing-the-counter-template.md
     - Adding the Counter to your Project: helloootle/08-adding-the-counter-to-your-project.md
-    - Interacting with Created Counters: helloootle/interacting-with-created-counters.md
+    - Interacting with Created Counters: helloootle/09-interacting-with-created-counters.md
 
 # - Hackathon: hackathon.md
 - Templates: tari-templates.md

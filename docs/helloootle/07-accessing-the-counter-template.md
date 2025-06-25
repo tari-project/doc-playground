@@ -6,7 +6,7 @@ The next step is to add the counter functionality to our app. To do this, our ap
 - Create a counter on the Ootle that can be interacted with by our app
 - View any counters we've created at this point and check their value
 
-Normally, we'd code a Counter template to do this, but to save time we are going to use an existing template and call it directly. If you'd like to learn more about templates, you can the [Template introduction here](../tari-templates.md)
+Normally, we'd code a Counter template to do this, but to save time we are going to use an existing template and call it directly. If you'd like to learn more about templates, you can read the [Template introduction here](../tari-templates.md)
 
 !!! tip "What is a Template?"
     Templates are parameterised smart contracts. Templates are intended to be well-tested, secure, reusable components for building and running smart contracts on the DAN. It is the result of a compiled WASM file submitted to the Ootle. An example would be the built-in Non-fungible token (NFT) template, which can be used to create an NFT series.

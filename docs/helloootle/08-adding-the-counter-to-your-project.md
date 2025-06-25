@@ -131,4 +131,4 @@ This adds a button called "Create Counter" and, when pressed, will build the tra
 
 This will create a `component` substate on the Ootle - this means that you will have a Counter instance that is independent of the `template` that can be interacted with via specific functions.
 
-Next, we'll look at using transactions to interact with this `component` to increase the 
+Next, we'll look at using transactions to interact with this `component` to increase the counter amount.
