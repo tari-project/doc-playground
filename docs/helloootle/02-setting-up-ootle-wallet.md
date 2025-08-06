@@ -61,5 +61,4 @@ The important actions here for now are:
 
 - **`Claim Free Tokens`**, which will give you the necessary tokens required to perform transactions, submit contracts and perform other activities on the Ootle. By default, you should receive enough test tokens to mess around - if not, you can press this button.
 - **`Connect with WalletConnect`**, which will allow you to connect your wallet with your app for testing purposes (more in a bit).
-
-**`Publish template`**, which allows you to select a compiled WASM template for upload, estimate the fees required to submit and prevent you from uploading too large a template, will be discussed in our template guide.
+- **`Publish template`**, which allows you to select a compiled WASM template for upload, estimate the fees required to submit and prevent you from uploading too large a template, will be discussed in our template guide.

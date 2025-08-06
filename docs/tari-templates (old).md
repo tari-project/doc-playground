@@ -80,7 +80,7 @@ First, open the terminal and create a folder that you would like to clone both r
 
 ```sh
 git clone https://github.com/tari-project/tari.git
-git clone https://github.com/tari-project/tari-dan.git
+git clone https://github.com/tari-project/tari-ootle.git
 ```
 
 Change the directory to the cloned tari directory. You need to use a specific branch (feature-dan2) in order to successfully build the project. Run:

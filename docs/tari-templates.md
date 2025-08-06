@@ -102,6 +102,22 @@ Lastly, we have several methods for interacting with the structure contained wit
 
 These are the means that we are going to intereact with the data type we've created in the Counter structure. We can create a new counter component on the network (so we can have multiple Counter components running at each of their component addresses), a method to call the current value of the counters, and a method to increase any counter's value by 1.
 
+## Template Library Components
+
+Below are several of the core components used when developing templates:
+
+| Component        | Description                                                                                 |
+|------------------|---------------------------------------------------------------------------------------------|
+| ResourceBuilder  | Creates Resources of different types by calling on specific builders (fungible, NFT, etc.)  |
+| [ResourceManager](#template-lib-resource-manager)  | Manages existing Resources on Ootle, allowing for minting, burning, and other functions.    |
+| Component        | Creates a component instance of the Template.                                               |
+| AccessRules      | Sets specific access levels on Components and Resources.                                    |
+| Vault        | Stores and manages resources securely inside a Component.                           |
+| Bucket       | Temporary holder for resources during transfer or method calls.                         |
+| Context      | Provides information about the caller and transaction.                                  |
+| ComponentAddress/TemplateAddress | References to components/templates for interaction.                 |
+| call_method!/args! | Macros for cross-component calls and argument packaging.                          |
+
 ## Template Incorporating Vaults and Buckets
 The `counter` template above is extremely simple - create a component on the Ootle, store a value in it and increment it. However, most of the interactions you will be with more complex `models` and `structs`. 
 

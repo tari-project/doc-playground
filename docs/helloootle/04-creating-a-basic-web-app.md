@@ -4,6 +4,17 @@ At the end of following the instructions, you will have a React project set up w
 - A new React application
 - The various dependencies for the Tari protocol and by extension, the Ootle
 
+There are two methods:
+- **Recommended** Use the Tari CLI tool to create a new template project. This will deploy a working Vite+React app that interacts with a Counter on the Ootle.
+
+- Scaffold your own Vite+React project, in which you can build your own app or follow this guide further to create the Hello Ootle app with detailed explanations of the process.
+
+## Use Tari CLI to create the new app
+
+Download the latest release over at [The Tari CLI official Github page](github.com/tari-project/tari-cli/). You can also build the project directly from source by following the instructions on the README page.
+
+> Note: the MacOS binaries are not signed, so you will need to create an exception for running it. To run an unsigned binary on macOS, try opening it normally—if blocked, go to **System Preferences > Security & Privacy > General** and click **Open Anyway** for the app. Alternatively, remove the quarantine flag via Terminal with `xattr -d com.apple.quarantine /path/to/binary`. You can then run the binary from Terminal (`./binary`).
+
 Start by creating a folder for your project. Call it `Hello Ootle Project`
 
 Next, launch VS Code and select the `Open Folder` option from the `File` menu. Open the folder you just created.
