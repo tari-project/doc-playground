@@ -19,8 +19,6 @@ nav:
 # - Hackathon: hackathon.md
 - Templates: tari-templates.md
 - Tari JS Library: tarijs_library_intro.md
-- Resource Manager: template-lib-resource-manager.md
-        hidden: true
 
 extra_css:
   - stylesheets/extra.css  # Make sure this path is correct relative to your project

@@ -109,7 +109,7 @@ Below are several of the core components used when developing templates:
 | Component        | Description                                                                                 |
 |------------------|---------------------------------------------------------------------------------------------|
 | ResourceBuilder  | Creates Resources of different types by calling on specific builders (fungible, NFT, etc.)  |
-| [ResourceManager](resource-manager/)  | Manages existing Resources on Ootle, allowing for minting, burning, and other functions.    |
+| [ResourceManager](template-lib-resource-manager.md)  | Manages existing Resources on Ootle, allowing for minting, burning, and other functions.    |
 | Component        | Creates a component instance of the Template.                                               |
 | AccessRules      | Sets specific access levels on Components and Resources.                                    |
 | Vault        | Stores and manages resources securely inside a Component.                           |
