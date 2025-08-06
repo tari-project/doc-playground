@@ -6,7 +6,7 @@ It abstracts common operations like creating resources, minting tokens, recallin
 
 The `ResourceManager` uses engine calls to perform resource operations and enforces access rules and permissions based on the resource configuration.
 
-## Examples
+**Example**
 
 ```rust
 use tari_template_lib::prelude::*;
@@ -22,15 +22,13 @@ let bucket = resource_manager.mint_fungible(1000);
 self.vault.deposit(bucket);
 ```
 
---
-
-## Notes
+**Note**
 
 - All mint/burn/update calls check the appropriate `ResourceAccessRules` before proceeding.
 - When a minting function returns a `Bucket`, it contains the newly minted resource(s).
 
 
-# `ResourceManager` Struct
+## `ResourceManager` Struct
 
 ```rust
 #[derive(Debug, Serialize, Deserialize)]
