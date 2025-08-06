@@ -8,7 +8,7 @@ The `ResourceManager` uses engine calls to perform resource operations and enfor
 
 ## Examples
 
-```rust,ignore
+```rust
 use tari_template_lib::prelude::*;
 
 // Assume `my_resource_address` is a ResourceAddress
@@ -44,7 +44,7 @@ Provides an interface for various resource operations e.g. Minting, recalling, c
 
 ## Example
 
-```rust,ignore
+```rust
 use tari_template_lib::resource::manager::ResourceManager;
 let resource_manager = ResourceManager::get(my_resource_address);
 resource_manager.mint_fungible(Amount(1000));
@@ -133,7 +133,7 @@ Panics if:
 
 **Example:**
 
-```rust,ignore
+```rust
 use tari_template_lib::{
     models::{Amount, Metadata, ResourceAccessRules, ResourceType, OwnerRule, MintArg},
     prelude::*,
@@ -184,7 +184,7 @@ This method will panic if:
 
 **Example:**
 
-```rust,ignore
+```rust
 let bucket = resource_manager.mint_confidential(statement);
 // The returned Bucket contains the newly minted confidential tokens.
 ```
@@ -213,7 +213,7 @@ This method will panic if:
 
 **Example:**
 
-```rust,ignore
+```rust
 let bucket = resource_manager.mint_stealth(statement);
 // The returned Bucket contains the newly minted stealth tokens.
 ```
@@ -258,7 +258,7 @@ This method will panic if:
 
 **Example:**
 
-```rust,ignore
+```rust
 let nft = resource_manager.mint_non_fungible(
     NonFungibleId::String("unique_nft_id".to_string()),
     &MyMetadata { name: "My NFT".into() },
@@ -302,7 +302,7 @@ This function will panic if the resource being managed is not of type \[Resource
 
 **Example:**
 
-```rust,ignore
+```rust
 let bucket = manager.mint_many_non_fungible(
     &MyMetadata { name: "Gem".into() },
     &MyMutableData { durability: 100 },
