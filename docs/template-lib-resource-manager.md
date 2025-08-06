@@ -42,7 +42,7 @@ pub struct ResourceManager {
 
 Provides an interface for various resource operations e.g. Minting, recalling, creating, etc.
 
-## Example
+### Example
 
 ```rust
 use tari_template_lib::resource::manager::ResourceManager;
@@ -50,9 +50,9 @@ let resource_manager = ResourceManager::get(my_resource_address);
 resource_manager.mint_fungible(Amount(1000));
 ```
 
-# Methods
+## Methods
 
-## `get`
+### `get`
 
 ```rust
 pub fn get(resource_address: ResourceAddress) -> Self
@@ -60,7 +60,7 @@ pub fn get(resource_address: ResourceAddress) -> Self
 
 Returns the address of the resource that is being managed.
 
-## `resource_address`
+### `resource_address`
 
 ```rust
 pub fn resource_address(&self) -> ResourceAddress
@@ -68,7 +68,7 @@ pub fn resource_address(&self) -> ResourceAddress
 
 Returns the address of the resource that is being managed.
 
-## `resource_type`
+### `resource_type`
 
 ```rust
 pub fn resource_type(&self) -> ResourceType
@@ -80,7 +80,7 @@ A public function that returns the resource type of the resource being managed.
 
 If the resource type is not recognized on a resource or if the resource address is not set via ResourceManager.
 
-## `create`
+### `create`
 
 ```rust
 pub(crate) fn create(
@@ -156,7 +156,7 @@ let (address, bucket) = resource_manager.create(
 );
 ```
 
-## `mint_confidential`
+### `mint_confidential`
 
 ```rust
 pub fn mint_confidential(&self, statement: ConfidentialOutputStatement) -> Bucket
@@ -189,7 +189,7 @@ let bucket = resource_manager.mint_confidential(statement);
 // The returned Bucket contains the newly minted confidential tokens.
 ```
 
-## `mint_stealth`
+### `mint_stealth`
 
 ```rust
 pub fn mint_stealth(&self, statement: StealthMintStatement)
@@ -218,7 +218,7 @@ let bucket = resource_manager.mint_stealth(statement);
 // The returned Bucket contains the newly minted stealth tokens.
 ```
 
-## `mint_non_fungible`
+### `mint_non_fungible`
 
 ```rust
 pub fn mint_non_fungible<T: Serialize, U: Serialize>(
@@ -267,7 +267,7 @@ let nft = resource_manager.mint_non_fungible(
 // The returned Bucket contains the newly minted NFT.
 ```
 
-## `mint_many_non_fungible`
+### `mint_many_non_fungible`
 
 ```rust
 pub fn mint_many_non_fungible<T: Serialize + ?Sized, U: Serialize + ?Sized>(
