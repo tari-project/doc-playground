@@ -20,12 +20,13 @@ Documentation for the `tari_template_lib` can be found [here](https://docs.rs/ta
 ## Basic Concepts of the Ootle
 - **Runtime Environment**: The runtime environment handles various elements such as buckets, proofs, substates, and components. It provides methods for manipulating these elements and managing their interactions. This includes the Tari Virtual Machine (TVM)
 - **Workspace**: Manages variables and proofs, providing methods to insert and retrieve indexed values. It's a localised instance of the variables required when performing a transaction against a smart contract that exists within the TVM.
+- **Templates**: A reusable, parameterized smart contract compiled to WASM and submitted to Ootle. Templates define logic for components and exist as special substates. Example: an NFT template defines how NFTs behave
 - **Component**: A reusable and addressable entity with associated state and methods. This exists as a substate on the Ootle, that can be called when required via a unique address.
 - **Bucket**: Handles resources within the component or workspace. Buckets are used to securely move data between vaults.
 - **Vault**: Securely stores resources and manages access control. An example of a vault is a collection of tokens, which needs to be updated as people withdraw or deposit more tokens into the vault.
 
-## Writing Your First Template
-We'll go through a simple template that will introduce you to the structure of a template and the core elements that are utilised. Below is the code for a template that will create a simple counter
+## The basic structure of a template
+We'll go through a simple template that will introduce you to the structure of a template and the core elements that are utilised. Below is the code for a template that will create a simple counter: a component on the network that has an unsign
 
 ```rust
 use tari_template_lib::prelude::*;
@@ -77,9 +78,9 @@ This a unique attribute macro within the Tari template library. This will allow 
     }
 ```
 
-Creates a custom data type that stores an integer value in Rust. But how does one "store" a value on the blockchain? The template macro we've selected interprets this instruction and then builds code around it for blockchain interaction. You're still creating a custom data type that can be modified, but the template macro understands what to add to the struct to store it on the blockchain.
+Creates a custom data type that stores an integer value in Rust. But how does one "store" a value on the blockchain? The template macro we've selected interprets this instruction and then builds code around it for blockchain interaction. You're still creating a custom data type that can be modified, but the template macro understands what to add to the struct to store it on the blockchain. In this case, the `value` is stored as the Component's state.
 
-Lastly, we have several methods for interacting with the structure contained within the implementation block:
+Lastly, we have several methods for interacting with the `value` state contained within the implementation block:
 
 ```rust
     impl Counter {
@@ -100,9 +101,15 @@ Lastly, we have several methods for interacting with the structure contained wit
     }
 ```
 
-These are the means that we are going to intereact with the data type we've created in the Counter structure. We can create a new counter component on the network (so we can have multiple Counter components running at each of their component addresses), a method to call the current value of the counters, and a method to increase any counter's value by 1.
+These are the means that we are going to intereact with the data type we've created in the Counter structure. 
 
-## Template Library Components
+Using this template, we can create a new counter component on the network (so we can have multiple Counter components running at each of their Component addresses), a method to call the current value of the counters, and a method to increase any counter's value by 1.
+
+## Common modules on the Ootle
+
+While this details the basic structure, you may have several questions. How do I control who has access to this template, or the components created from them? If I wanted to make my own token, how would I represent it? How exactly does the Ootle "execute" a template?
+
+### Template Library Components
 
 Below are several of the core components used when developing templates:
 
@@ -110,13 +117,67 @@ Below are several of the core components used when developing templates:
 |------------------|---------------------------------------------------------------------------------------------|
 | ResourceBuilder  | Creates Resources of different types by calling on specific builders (fungible, NFT, etc.)  |
 | [ResourceManager](template-lib-resource-manager.md)  | Manages existing Resources on Ootle, allowing for minting, burning, and other functions.    |
-| Component        | Creates a component instance of the Template.                                               |
-| AccessRules      | Sets specific access levels on Components and Resources.                                    |
 | Vault        | Stores and manages resources securely inside a Component.                           |
 | Bucket       | Temporary holder for resources during transfer or method calls.                         |
+| Component        | Creates a component instance of the Template.                                               |
+| AccessRules      | Sets specific access levels on Components and Resources.                                    |
 | Context      | Provides information about the caller and transaction.                                  |
 | ComponentAddress/TemplateAddress | References to components/templates for interaction.                 |
 | call_method!/args! | Macros for cross-component calls and argument packaging.                          |
+
+## ResourceBuilder
+
+The `ResourceBuilder` is a foundational tool for creating new digital assets, such as fungible tokens (like currencies or game cards) and non-fungible tokens (NFTs, like unique collectibles). It provides a flexible, structured way to define the properties, permissions, and initial supply of these resources before they are deployed to the blockchain. With `ResourceBuilder`, you specify crucial details such as the resource type (fungible,  non-fungible or confidential), metadata like name and description, `AccessRules` for minting and burning, and ownership permissions using `OwnerRule`. Once configured, the builder constructs the resource and returns both a manager for future operations and an initial bucket of tokens or NFTs.
+
+**Example**:
+
+Assume you wanted to create a CCG with a standard set of cards, with the unique draw being that every pack of cards bought by your players has a chance at a unique, randomly generated card with unique stats.
+
+To create a regular card type in your collectible card game, you could use:
+```rust
+// Standard card resource (fungible)
+let (card_manager, card_bucket) = ResourceBuilder::fungible()
+    .with_owner_rule(OwnerRule::Signature(game_owner_pubkey))
+    .with_access_rules(AccessRules::new().mint(Rule::require_owner()))
+    .with_metadata(Metadata::from_iter([
+        ("name", "Fire Dragon"),
+        ("rarity", "Rare"),
+        ("type", "Regular"),
+        ("stats", "Attack: 7, Defense: 5"),
+    ]))
+    .initial_supply(0)
+    .build();
+```
+
+And for unique, one-of-a-kind cards, you would use:
+```rust
+// Unique card resource (non-fungible NFT series)
+let (unique_card_manager, _) = ResourceBuilder::non_fungible()
+    .with_owner_rule(OwnerRule::Signature(game_owner_pubkey))
+    .with_access_rules(AccessRules::new().mint(Rule::require_owner()))
+    .with_metadata(Metadata::from_iter([
+        ("series", "Unique Card Series"), // Series-level metadata
+        ("description", "One-of-a-kind collectible cards"),
+    ]))
+    .build();
+
+// When minting a unique card (NFT), include metadata that matches the regular card structure
+let unique_card_metadata = Metadata::from_iter([
+    ("name", generate_random_name()),           // Random name
+    ("rarity", generate_random_rarity()),       // Random rarity
+    ("type", "Unique"),                         // Type marked as Unique
+    ("stats", generate_random_stats()),         // Random stats
+]);
+
+let unique_id = NonFungibleId::random();
+let unique_card_bucket = unique_card_manager.mint_non_fungible(
+    unique_id,
+    &unique_card_metadata,
+    &Metadata::default(), // Optional: mutable data
+);
+```
+
+By leveraging the `ResourceBuilder` together with modules like `AccessRules`, `OwnerRule`, and `Metadata`, you ensure your game’s assets are created securely and flexibly, supporting both the unlimited distribution of regular cards and the guaranteed uniqueness of special collectibles.
 
 ## Template Incorporating Vaults and Buckets
 The `counter` template above is extremely simple - create a component on the Ootle, store a value in it and increment it. However, most of the interactions you will be with more complex `models` and `structs`. 
