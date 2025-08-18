@@ -12,7 +12,7 @@ To develop within the Ootle (both apps or Tari templates), you're going to need 
 * The `tari_template_lib` dependency
 * Compile the template into WebAssembly (WASM) and commit it to the network.
 
-This guide assumes some basic knowledge of Git, Cargo and Rust.
+This guide assumes some basic knowledge of Git, Cargo and Rust, as well as a general grasp of [Ootle's fundamental concepts]()
 
 ## Rust Template Documentation 
 Documentation for the `tari_template_lib` can be found [here](https://docs.rs/tari_template_lib/latest/tari_template_lib/)
@@ -20,8 +20,8 @@ Documentation for the `tari_template_lib` can be found [here](https://docs.rs/ta
 ## Basic Concepts of the Ootle
 - **Runtime Environment**: The runtime environment handles various elements such as buckets, proofs, substates, and components. It provides methods for manipulating these elements and managing their interactions. This includes the Tari Virtual Machine (TVM)
 - **Workspace**: Manages variables and proofs, providing methods to insert and retrieve indexed values. It's a localised instance of the variables required when performing a transaction against a smart contract that exists within the TVM.
-- **Templates**: A reusable, parameterized smart contract compiled to WASM and submitted to Ootle. Templates define logic for components and exist as special substates. Example: an NFT template defines how NFTs behave
-- **Component**: A reusable and addressable entity with associated state and methods. This exists as a substate on the Ootle, that can be called when required via a unique address.
+- **Templates**: A reusable, parameterized smart contract compiled to WASM and submitted to Ootle. Templates define logic for components and exist as special substates. Example: an NFT template defines how NFTs are created and behave
+- **Component**: A reusable and addressable entity with associated state and methods. A component is a instantiated template, representing a live, stateful contract on the network. e.g. calling an NFT contract will 
 - **Bucket**: Handles resources within the component or workspace. Buckets are used to securely move data between vaults.
 - **Vault**: Securely stores resources and manages access control. An example of a vault is a collection of tokens, which needs to be updated as people withdraw or deposit more tokens into the vault.
 
@@ -109,29 +109,39 @@ Using this template, we can create a new counter component on the network (so we
 
 While this details the basic structure, you may have several questions. How do I control who has access to this template, or the components created from them? If I wanted to make my own token, how would I represent it? How exactly does the Ootle "execute" a template?
 
+
+
+
+
+
 ### Template Library Components
 
-Below are several of the core components used when developing templates:
+Below are several of the core tools used when developing templates:
 
 | Component        | Description                                                                                 |
 |------------------|---------------------------------------------------------------------------------------------|
-| ResourceBuilder  | Creates Resources of different types by calling on specific builders (fungible, NFT, etc.)  |
-| [ResourceManager](template-lib-resource-manager.md)  | Manages existing Resources on Ootle, allowing for minting, burning, and other functions.    |
-| Vault        | Stores and manages resources securely inside a Component.                           |
-| Bucket       | Temporary holder for resources during transfer or method calls.                         |
-| Component        | Creates a component instance of the Template.                                               |
-| AccessRules      | Sets specific access levels on Components and Resources.                                    |
-| Context      | Provides information about the caller and transaction.                                  |
-| ComponentAddress/TemplateAddress | References to components/templates for interaction.                 |
-| call_method!/args! | Macros for cross-component calls and argument packaging.                          |
+| [ResourceBuilder](template-lib-resource-builder.md)  | Creates Resources of different types by calling on specific builders (fungible, NFT, etc.)  |
+| [ResourceManager](template-lib-resource-manager.md)  | Manages existing Resources on Ootle, allowing for minting, burning, and other functions.  |
+| ComponentManager  | .  |
 
-## ResourceBuilder
 
-The `ResourceBuilder` is a foundational tool for creating new digital assets, such as fungible tokens (like currencies or game cards) and non-fungible tokens (NFTs, like unique collectibles). It provides a flexible, structured way to define the properties, permissions, and initial supply of these resources before they are deployed to the blockchain. With `ResourceBuilder`, you specify crucial details such as the resource type (fungible,  non-fungible or confidential), metadata like name and description, `AccessRules` for minting and burning, and ownership permissions using `OwnerRule`. Once configured, the builder constructs the resource and returns both a manager for future operations and an initial bucket of tokens or NFTs.
+
+| Vault  | Stores and manages resources securely inside a Component.  |
+| Bucket  | Temporary holder for resources during transfer or method calls.  |
+
+| AccessRules  | Sets specific access levels on Components and Resources.  |
+| Context  | Provides information about the caller and transaction.  |
+| ComponentAddress/TemplateAddress  | References to components/templates for interaction.  |
+| MetaData | 
+| call_method!/args!  | Macros for cross-component calls and argument packaging.  |
+
+#### ResourceBuilder
+
+The `ResourceBuilder` is a tool for creating new digital assets, such as fungible tokens (like currencies or game cards) and non-fungible tokens (NFTs, like unique collectibles). It provides a flexible, structured way to define the properties, permissions, and initial supply of these resources before they are deployed to the blockchain. With `ResourceBuilder`, you specify crucial details such as the resource type (fungible, non-fungible or confidential), metadata like name and description, `ResourceAccessRules` for minting and burning, and ownership permissions using `OwnerRule`. Once configured, the builder constructs the resource and returns both a manager for future operations and an initial bucket of tokens or NFTs which can be deposited into the vault.
 
 **Example**:
 
-Assume you wanted to create a CCG with a standard set of cards, with the unique draw being that every pack of cards bought by your players has a chance at a unique, randomly generated card with unique stats.
+Assume you wanted to create a Collectible Card Game (CCG) with a standard set of cards, with the unique draw being that every pack of cards bought by your players has a chance at a unique, randomly generated card with unique stats.
 
 To create a regular card type in your collectible card game, you could use:
 ```rust
@@ -177,7 +187,40 @@ let unique_card_bucket = unique_card_manager.mint_non_fungible(
 );
 ```
 
-By leveraging the `ResourceBuilder` together with modules like `AccessRules`, `OwnerRule`, and `Metadata`, you ensure your game’s assets are created securely and flexibly, supporting both the unlimited distribution of regular cards and the guaranteed uniqueness of special collectibles.
+By leveraging the `ResourceBuilder` together with `AccessRules`, `OwnerRule`, and `Metadata`, you ensure your game’s assets are created securely and flexibly, supporting both the unlimited distribution of regular cards and the guaranteed uniqueness of special collectibles.
+
+#### ResourceManager
+
+The `ResourceManager` enables you to interact with existing Resources on the Ootle. Whereas `ResourceBuilder` builds resources with specific criteria (for example, defining the `ResourceAccessRules` on the resource), `ResourceManager` is used to interact with the Resource once created. Actions include querying the current supply of the resource, minting new tokens, freezing tokens and updating `ResourceAccessRules`.
+
+**Example:**
+
+In our CCG, we need to be able to mint a card to add to the pack that we are selling. We would also like to be able to check how many cards are in the wild of a particular type. We can use the `ResourceManager` to do so by calling on the `mint_fungible` and `total_supply` methods of the `ResourceManager`
+
+```rust
+use tari_template_lib::prelude::*;
+
+/// Mint more cards of an existing fungible card resource and add them to a pack
+pub fn mint_existing_fungible_card_to_pack(
+    resource_manager: &ResourceManager,
+    card_resource_address: ResourceAddress,
+    amount: Amount,
+) -> Bucket {
+    // Mint the requested amount of cards into a new bucket
+    let minted_bucket = resource_manager.mint_fungible(card_resource_address, amount);
+    // minted_bucket contains the new cards to add to a pack
+    minted_bucket
+}
+
+/// Check the current supply of a particular card type (fungible resource)
+pub fn get_card_supply(
+    resource_manager: &ResourceManager,
+    card_resource_address: ResourceAddress,
+) -> Amount {
+    resource_manager.total_supply(card_resource_address)
+}
+```
+
 
 ## Template Incorporating Vaults and Buckets
 The `counter` template above is extremely simple - create a component on the Ootle, store a value in it and increment it. However, most of the interactions you will be with more complex `models` and `structs`. 
